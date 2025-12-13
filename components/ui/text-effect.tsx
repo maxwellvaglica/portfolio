@@ -107,7 +107,7 @@ const presetVariants: Record<
       exit: { opacity: 0, y: 20 },
     },
   },
-}
+};
 
 const AnimationComponent: React.FC<{
   segment: string;
@@ -175,9 +175,9 @@ const createVariantsWithTransition = (
   baseVariants: Variants,
   transition?: Transition & { exit?: Transition },
 ): Variants => {
-  if (!transition) return baseVariants
+  if (!transition) return baseVariants;
 
-  const { exit: _, ...mainTransition } = transition
+  const { exit: _, ...mainTransition } = transition;
 
   return {
     ...baseVariants,

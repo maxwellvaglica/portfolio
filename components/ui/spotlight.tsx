@@ -54,8 +54,12 @@ export function Spotlight({
 
     return () => {
       parentElement.removeEventListener("mousemove", handleMouseMove);
-      parentElement.removeEventListener("mouseenter", () => setIsHovered(true));
-      parentElement.removeEventListener("mouseleave", () => setIsHovered(false));
+      parentElement.removeEventListener("mouseenter", () =>
+        setIsHovered(true),
+      );
+      parentElement.removeEventListener("mouseleave", () =>
+        setIsHovered(false),
+      );
     };
   }, [parentElement, handleMouseMove]);
 
