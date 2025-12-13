@@ -5,6 +5,7 @@ type Project = {
   video?: string;
   image?: string;
   id: string;
+  category?: string;
   details?: {
     overview: string;
     technologies: string[];
@@ -39,92 +40,409 @@ export const PROJECTS: Project[] = [
   {
     name: "Cryptography: RSA & Vigenere Cipher",
     description:
-      "Implementation of cryptographic algorithms including RSA encryption/decryption, Vigenere cipher, and advanced attacks like weak key detection and broadcast attacks.",
+      "Full implementation of RSA encryption/decryption with cryptographic attacks including weak key detection, broadcast attacks using Chinese Remainder Theorem, and parity oracle exploits.",
     link: "#",
     image:
-      "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=600&fit=crop&q=80",
-    id: "project1",
+      "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=600&fit=crop&q=80",
+    id: "cryptography",
+    category: "Security",
     details: {
       overview:
-        "A comprehensive cryptography project implementing RSA and Vigenere cipher algorithms with various cryptographic attacks. The project includes implementations of encryption/decryption, weak key detection, broadcast attacks, and parity oracle attacks using advanced mathematical techniques like the Chinese Remainder Theorem.",
+        "A comprehensive cryptography project implementing RSA and Vigenere cipher algorithms with various cryptographic attacks. The project demonstrates deep understanding of public-key cryptography, including key generation, encryption/decryption, and multiple attack vectors using advanced mathematical techniques like the Chinese Remainder Theorem and modular arithmetic.",
       technologies: [
         "Python",
         "Cryptography",
         "Number Theory",
         "Decimal Arithmetic",
+        "Hash Functions (SHA-256)",
+        "Modular Arithmetic",
       ],
       features: [
-        "RSA encryption and decryption with key generation",
-        "Vigenere cipher with dictionary attack",
-        "Weak RSA key detection using GCD",
+        "RSA key generation with large prime numbers",
+        "RSA encryption and decryption implementation",
+        "Vigenere cipher with dictionary-based cryptanalysis",
+        "Weak RSA key detection using GCD analysis",
         "RSA broadcast attack using Chinese Remainder Theorem",
-        "Parity oracle attack for RSA plaintext recovery",
+        "Parity oracle attack for plaintext recovery",
       ],
       challenges:
-        "Handling large number arithmetic for RSA operations, implementing efficient attacks on cryptographic systems, and managing precision issues with extremely large numbers using Python's Decimal module.",
+        "Handling arbitrary-precision arithmetic for 2048+ bit RSA operations, implementing mathematically complex attacks on cryptographic systems, and managing precision issues with Python's Decimal module for extremely large numbers.",
       results:
-        "Successfully implemented multiple cryptographic algorithms and attacks, demonstrating understanding of both classical and modern cryptography principles. Achieved 100% score on the project.",
+        "Successfully implemented multiple cryptographic algorithms and attacks, demonstrating mastery of both classical and modern cryptography principles. Achieved 100% score on the project.",
+    },
+  },
+  {
+    name: "BGP Hijacking Simulation",
+    description:
+      "Network security simulation demonstrating BGP route hijacking attacks in Mininet, implementing multi-router topologies with Quagga/Zebra and real-time attack visualization.",
+    link: "#",
+    image:
+      "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&h=600&fit=crop&q=80",
+    id: "bgp-hijacking",
+    category: "Networking",
+    details: {
+      overview:
+        "A comprehensive network security project that simulates BGP hijacking attacks in a controlled Mininet environment. The project implements a multi-router network topology with full BGP routing, demonstrates how rogue autonomous systems can hijack internet routes, and provides real-time visualization of attack propagation.",
+      technologies: [
+        "Python",
+        "Mininet",
+        "BGP Protocol",
+        "Quagga/Zebra",
+        "Network Simulation",
+        "Linux Networking",
+      ],
+      features: [
+        "Multi-router network topology with 6+ routers",
+        "Full BGP routing protocol implementation",
+        "Rogue AS injection and route hijacking",
+        "Real-time route propagation visualization",
+        "Web-based attack monitoring interface",
+        "Configurable attack scenarios (easy/hard mode)",
+      ],
+      challenges:
+        "Configuring complex BGP routing tables across multiple routers, managing Linux network namespaces in Mininet, simulating realistic attack scenarios, and ensuring proper route convergence after attacks.",
+      results:
+        "Successfully demonstrated BGP hijacking vulnerabilities and created an educational tool for understanding critical internet infrastructure security. Achieved 150% score (bonus points) on the project.",
+    },
+  },
+  {
+    name: "Trading Strategy Evaluation",
+    description:
+      "ML-based trading system using ensemble methods (BagLearner with Random Trees) to predict stock movements, with full backtesting simulation including transaction costs.",
+    link: "#",
+    image:
+      "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&h=600&fit=crop&q=80",
+    id: "strategy-evaluation",
+    category: "Machine Learning",
+    details: {
+      overview:
+        "A comprehensive machine learning project for developing and evaluating automated trading strategies. The project implements ensemble learning using bagging with random decision trees, calculates technical indicators, and simulates market conditions with realistic transaction costs to develop profitable trading strategies.",
+      technologies: [
+        "Python",
+        "Machine Learning",
+        "Ensemble Methods (Bagging)",
+        "Random Trees",
+        "Pandas",
+        "NumPy",
+        "Technical Analysis",
+      ],
+      features: [
+        "BagLearner ensemble implementation from scratch",
+        "RTLearner (Random Tree) for trading signals",
+        "Technical indicators (SMA, Bollinger Bands, RSI, MACD)",
+        "Market simulation with transaction costs and slippage",
+        "Strategy backtesting with walk-forward analysis",
+        "Performance metrics (Sharpe ratio, cumulative returns, max drawdown)",
+      ],
+      challenges:
+        "Designing effective feature engineering pipelines for financial data, implementing ensemble learning methods without external ML libraries, handling look-ahead bias in backtesting, and optimizing strategy parameters for out-of-sample performance.",
+      results:
+        "Developed trading strategies that significantly outperform buy-and-hold benchmarks, demonstrating proficiency in machine learning for quantitative finance.",
     },
   },
   {
     name: "BGP Measurements & Analysis",
     description:
-      "Network analysis project analyzing BGP routing data to track unique prefixes, autonomous systems, and routing behavior over time using pybgpstream.",
+      "Large-scale network analysis processing BGP routing data to track internet routing dynamics, autonomous system growth, and prefix advertisement patterns using pybgpstream.",
     link: "#",
     image:
-      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop&q=80",
-    id: "project2",
+      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop&q=80",
+    id: "bgp-measurements",
+    category: "Networking",
     details: {
       overview:
-        "A network analysis project that processes BGP (Border Gateway Protocol) routing data to analyze internet routing behavior. The project tracks unique advertised prefixes, autonomous systems, and identifies top ASes by prefix growth over time using real BGP data snapshots.",
+        "A data engineering project that processes massive BGP (Border Gateway Protocol) routing datasets to analyze internet routing behavior. The project tracks unique advertised prefixes, monitors autonomous system growth, and identifies the top ASes by prefix growth over time using real BGP data from global route collectors.",
       technologies: [
         "Python",
         "pybgpstream",
-        "Network Analysis",
+        "Data Processing",
         "BGP Protocol",
+        "Network Analysis",
+        "Time Series Analysis",
       ],
       features: [
-        "Unique prefix tracking over time",
+        "Processing of multi-gigabyte BGP routing tables",
+        "Unique prefix tracking across time snapshots",
         "Autonomous system identification and counting",
         "Top 10 ASes by prefix growth analysis",
-        "BGP routing table snapshot processing",
-        "AS path parsing and analysis",
+        "AS path parsing and relationship analysis",
+        "Temporal trend analysis of routing changes",
       ],
       challenges:
-        "Processing large-scale BGP routing data efficiently, parsing complex AS path structures, and handling multiple data snapshots to track changes over time.",
+        "Processing massive BGP routing datasets efficiently, parsing complex AS path structures with AS-SETs, handling data from multiple global vantage points, and correlating routing changes across time.",
       results:
-        "Successfully analyzed BGP routing data to identify routing trends and autonomous system behavior, providing insights into internet routing dynamics.",
+        "Successfully analyzed global BGP routing data to identify routing trends and AS behavior patterns, providing insights into internet routing dynamics at scale.",
+    },
+  },
+  {
+    name: "SDN Firewall Implementation",
+    description:
+      "Software-Defined Networking firewall using POX controller and OpenFlow protocol for dynamic packet filtering with programmable security policies.",
+    link: "#",
+    image:
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop&q=80",
+    id: "sdn-firewall",
+    category: "Networking",
+    details: {
+      overview:
+        "A Software-Defined Networking (SDN) project implementing a programmable firewall using the POX controller and OpenFlow protocol. The firewall dynamically enforces network security policies based on MAC addresses, IP addresses, ports, and protocols, providing centralized and flexible network security management.",
+      technologies: [
+        "Python",
+        "POX Controller",
+        "OpenFlow 1.0",
+        "SDN Architecture",
+        "Network Security",
+        "Packet Filtering",
+      ],
+      features: [
+        "Dynamic firewall rule processing engine",
+        "Layer 2 MAC address filtering",
+        "Layer 3 IP-based access control",
+        "Layer 4 port and protocol filtering (TCP/UDP)",
+        "OpenFlow flow table management",
+        "Priority-based rule matching",
+      ],
+      challenges:
+        "Understanding OpenFlow protocol specifications and match fields, implementing efficient packet matching logic, managing flow table entries with proper priorities, and enforcing complex security policies without impacting network performance.",
+      results:
+        "Successfully implemented a functional SDN firewall demonstrating the power of programmable networks for security enforcement.",
     },
   },
   {
     name: "Machine Learning for Cyber Security",
     description:
-      "Machine learning project focused on cybersecurity applications, including data preprocessing, feature engineering, and model development for security threat detection.",
+      "End-to-end ML pipeline for security threat detection including data preprocessing, feature engineering, model training, and evaluation on real-world security datasets.",
     link: "#",
     image:
       "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=600&fit=crop&q=80",
-    id: "project3",
+    id: "ml-cybersecurity",
+    category: "Machine Learning",
     details: {
       overview:
-        "A comprehensive machine learning project applying data science techniques to cybersecurity problems. The project includes data type detection, feature engineering, model development, and evaluation for security threat detection and analysis.",
+        "A comprehensive machine learning project applying data science and ML techniques to cybersecurity problems. The project includes building complete ML pipelines with data preprocessing, feature engineering, model development, hyperparameter tuning, and evaluation for security threat detection and classification.",
       technologies: [
         "Python",
         "Pandas",
         "NumPy",
+        "Scikit-learn",
         "Machine Learning",
-        "Data Science",
+        "Data Preprocessing",
       ],
       features: [
-        "Data type detection and conversion",
-        "DataFrame manipulation and indexing",
-        "Feature engineering for security data",
-        "Machine learning model development",
-        "Model evaluation and validation",
+        "Automated data type detection and conversion",
+        "Feature engineering for network traffic data",
+        "Handling imbalanced security datasets",
+        "Multiple ML model comparison",
+        "Cross-validation and hyperparameter tuning",
+        "Security threat classification pipeline",
       ],
       challenges:
-        "Handling diverse data types in security datasets, preprocessing noisy security data, and developing effective features for threat detection while maintaining model interpretability.",
+        "Handling highly imbalanced security datasets where attacks are rare, preprocessing noisy network traffic data, developing effective features for threat detection, and building interpretable models for security operations.",
       results:
-        "Successfully developed machine learning models for cybersecurity applications, demonstrating proficiency in data preprocessing and ML techniques. Achieved 100% score on the project.",
+        "Successfully developed machine learning pipelines for cybersecurity applications, demonstrating proficiency in applied ML. Achieved 100% score on the project.",
+    },
+  },
+  {
+    name: "API Security & Penetration Testing",
+    description:
+      "Hands-on security assessment identifying and exploiting API vulnerabilities including authentication bypasses, injection flaws, and authorization issues.",
+    link: "#",
+    image:
+      "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&h=600&fit=crop&q=80",
+    id: "api-security",
+    category: "Security",
+    details: {
+      overview:
+        "A hands-on security project focused on identifying and exploiting vulnerabilities in web APIs. The project covers the OWASP API Security Top 10, including broken authentication, excessive data exposure, and injection attacks, with practical exploitation techniques and secure coding recommendations.",
+      technologies: [
+        "Python",
+        "REST API Security",
+        "OWASP Top 10",
+        "Penetration Testing",
+        "HTTP/HTTPS",
+        "Burp Suite",
+      ],
+      features: [
+        "API endpoint discovery and enumeration",
+        "Authentication mechanism analysis and bypass",
+        "JWT token manipulation attacks",
+        "SQL injection in API parameters",
+        "Authorization bypass testing",
+        "Security vulnerability documentation",
+      ],
+      challenges:
+        "Understanding complex authentication mechanisms like OAuth and JWT, identifying subtle logic flaws in authorization, and developing reliable exploits that work across different API implementations.",
+      results:
+        "Successfully identified and exploited multiple security vulnerabilities, capturing all security flags. Achieved 100% score demonstrating comprehensive API security knowledge.",
+    },
+  },
+  {
+    name: "Web Security Assessment",
+    description:
+      "Comprehensive web application penetration testing covering SQL injection, XSS, CSRF, and authentication bypass with detailed vulnerability analysis.",
+    link: "#",
+    image:
+      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop&q=80",
+    id: "web-security",
+    category: "Security",
+    details: {
+      overview:
+        "A detailed web security assessment project exploring the OWASP Top 10 vulnerabilities in web applications. The project involves identifying injection flaws, broken authentication, XSS, and other critical vulnerabilities, developing exploits, and documenting remediation strategies.",
+      technologies: [
+        "Web Security",
+        "OWASP Top 10",
+        "SQL Injection",
+        "XSS/CSRF",
+        "Browser DevTools",
+        "Security Analysis",
+      ],
+      features: [
+        "SQL injection (blind, union-based, error-based)",
+        "Cross-site scripting (reflected, stored, DOM-based)",
+        "Cross-site request forgery exploitation",
+        "Authentication and session bypass",
+        "Insecure direct object references",
+        "Security misconfiguration exploitation",
+      ],
+      challenges:
+        "Identifying subtle security vulnerabilities in modern web applications, understanding WAF bypass techniques, chaining multiple vulnerabilities for greater impact, and developing reliable exploits.",
+      results:
+        "Successfully identified and exploited multiple web application vulnerabilities, capturing all security flags. Achieved 100% score with comprehensive security documentation.",
+    },
+  },
+  {
+    name: "Q-Learner: Reinforcement Learning Trading",
+    description:
+      "Reinforcement learning implementation using Q-learning and Dyna-Q for automated trading strategy development with experience replay and model-based planning.",
+    link: "#",
+    image:
+      "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=600&fit=crop&q=80",
+    id: "qlearner",
+    category: "Machine Learning",
+    details: {
+      overview:
+        "A reinforcement learning project implementing Q-Learning for automated trading strategies. The project includes tabular Q-learning with epsilon-greedy exploration, Dyna-Q for model-based learning with experience replay, and application to real stock market data for trading decisions.",
+      technologies: [
+        "Python",
+        "Reinforcement Learning",
+        "Q-Learning",
+        "Dyna-Q",
+        "NumPy",
+        "Pandas",
+      ],
+      features: [
+        "Tabular Q-Learning implementation",
+        "Epsilon-greedy exploration with decay",
+        "Dyna-Q model-based planning",
+        "Experience replay for sample efficiency",
+        "State discretization for continuous data",
+        "Trading action optimization (buy/sell/hold)",
+      ],
+      challenges:
+        "Designing appropriate state representations for financial data, tuning exploration-exploitation tradeoff, implementing efficient Q-table updates, and handling the non-stationarity of financial markets.",
+      results:
+        "Successfully implemented a Q-Learner that develops profitable trading strategies through reinforcement learning, demonstrating understanding of RL principles in financial applications.",
+    },
+  },
+  {
+    name: "Technical Indicator Evaluation",
+    description:
+      "Quantitative finance project implementing technical indicators (SMA, Bollinger Bands, RSI, MACD) and developing theoretically optimal trading strategies.",
+    link: "#",
+    image:
+      "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=800&h=600&fit=crop&q=80",
+    id: "indicator-evaluation",
+    category: "Machine Learning",
+    details: {
+      overview:
+        "A quantitative finance project focused on implementing and evaluating technical indicators for trading. The project creates a Theoretically Optimal Strategy using perfect future knowledge as an upper bound, implements various technical indicators, and compares indicator-based strategies against benchmarks.",
+      technologies: [
+        "Python",
+        "Pandas",
+        "NumPy",
+        "Technical Analysis",
+        "Matplotlib",
+        "Backtesting",
+      ],
+      features: [
+        "Technical indicators (SMA, EMA, RSI, Bollinger Bands, MACD)",
+        "Theoretically Optimal Strategy implementation",
+        "Market simulation with transaction costs",
+        "Performance metrics (Sharpe, Sortino, max drawdown)",
+        "Benchmark comparison analysis",
+        "Trading signal visualization",
+      ],
+      challenges:
+        "Implementing numerically stable indicator calculations, avoiding look-ahead bias, properly accounting for transaction costs, and evaluating strategy performance with appropriate risk-adjusted metrics.",
+      results:
+        "Successfully developed and backtested trading strategies using technical indicators, demonstrating strong understanding of quantitative finance principles.",
+    },
+  },
+  {
+    name: "Power System Neural Network",
+    description:
+      "Deep learning model using PyTorch to predict branch overloads in electric power grids, implementing neural networks for critical infrastructure monitoring.",
+    link: "#",
+    image:
+      "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&h=600&fit=crop&q=80",
+    id: "power-system-nn",
+    category: "Machine Learning",
+    details: {
+      overview:
+        "A deep learning project using neural networks to predict branch overloads in electric power systems. The project implements a multi-layer neural network in PyTorch to analyze power flow data and predict potential grid failures, critical for maintaining power grid stability and preventing cascading blackouts.",
+      technologies: [
+        "Python",
+        "PyTorch",
+        "Deep Learning",
+        "Neural Networks",
+        "Power Systems",
+        "Scikit-learn",
+      ],
+      features: [
+        "Custom neural network architecture design",
+        "Multi-layer fully connected network with ReLU activation",
+        "Feature scaling and normalization pipeline",
+        "Binary classification for overload prediction",
+        "Model training with validation monitoring",
+        "Performance evaluation (accuracy, precision, recall)",
+      ],
+      challenges:
+        "Designing network architecture for power system data characteristics, handling class imbalance in overload events, selecting optimal hyperparameters, and ensuring model generalizes across different grid configurations.",
+      results:
+        "Successfully developed a neural network model for power system monitoring, demonstrating application of deep learning to critical infrastructure problems.",
+    },
+  },
+  {
+    name: "PLC Programming & Industrial Automation",
+    description:
+      "Industrial control system programming using IEC 61131-3 Structured Text for automated positioning systems with real-time control logic.",
+    link: "#",
+    image:
+      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop&q=80",
+    id: "plc-programming",
+    category: "Systems",
+    details: {
+      overview:
+        "An industrial automation project implementing PLC (Programmable Logic Controller) programming using Structured Text (ST) following IEC 61131-3 standards. The project implements control logic for precision positioning systems, including coordinate-based movement control and automated sequences.",
+      technologies: [
+        "Structured Text (ST)",
+        "IEC 61131-3",
+        "PLC Programming",
+        "Industrial Automation",
+        "Control Systems",
+      ],
+      features: [
+        "Precision position control logic",
+        "Coordinate system implementation (X/Y axes)",
+        "Target tracking algorithms",
+        "Directional motor control",
+        "Binary I/O handling and debouncing",
+        "State machine implementation",
+      ],
+      challenges:
+        "Understanding real-time PLC programming paradigms, implementing efficient control logic within scan cycle constraints, handling binary I/O operations reliably, and ensuring deterministic behavior in industrial environments.",
+      results:
+        "Successfully implemented PLC control systems for automated positioning, demonstrating understanding of industrial automation and control systems engineering.",
     },
   },
 ];
@@ -140,8 +458,8 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
   },
   {
     company: "Indiana University",
-    title: "Phlebotomist",
-    start: "2020",
+    title: "Research Programmer",
+    start: "2019",
     end: "2021",
     link: "https://www.indiana.edu/",
     id: "work2",
@@ -154,6 +472,10 @@ export const SOCIAL_LINKS: SocialLink[] = [
   {
     label: "LinkedIn",
     link: "https://www.linkedin.com/in/max-vaglica",
+  },
+  {
+    label: "GitHub",
+    link: "https://github.com/maxwellvaglica",
   },
 ];
 

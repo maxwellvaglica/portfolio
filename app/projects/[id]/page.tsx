@@ -83,62 +83,98 @@ export default function ProjectPage({
             )}
 
             {project.details && (
-              <div className="space-y-6">
-                <div>
+              <div className="space-y-8">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6"
+                >
                   <h2 className="mb-4 text-2xl font-bold text-zinc-100">
                     Overview
                   </h2>
-                  <p className="text-zinc-400">{project.details.overview}</p>
-                </div>
+                  <p className="leading-relaxed text-zinc-400">
+                    {project.details.overview}
+                  </p>
+                </motion.div>
 
-                <div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                >
                   <h2 className="mb-4 text-2xl font-bold text-zinc-100">
                     Technologies
                   </h2>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-3">
                     {project.details.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="rounded-full bg-zinc-800 px-3 py-1 text-sm text-zinc-300"
+                        className="rounded-full bg-gradient-to-r from-zinc-800 to-zinc-700 px-4 py-2 text-sm font-medium text-zinc-200 shadow-lg transition-all hover:scale-105 hover:from-zinc-700 hover:to-zinc-600"
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
-                </div>
+                </motion.div>
 
-                <div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6"
+                >
                   <h2 className="mb-4 text-2xl font-bold text-zinc-100">
                     Key Features
                   </h2>
-                  <ul className="space-y-2 text-zinc-400">
+                  <ul className="space-y-3 text-zinc-400">
                     {project.details.features.map((feature, index) => (
-                      <li key={index} className="flex items-start">
-                        <span className="mr-2 text-zinc-500">•</span>
-                        <span>{feature}</span>
-                      </li>
+                      <motion.li
+                        key={index}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.6 + index * 0.05 }}
+                        className="flex items-start"
+                      >
+                        <span className="mt-1 mr-3 text-lg text-zinc-500">
+                          ✓
+                        </span>
+                        <span className="leading-relaxed">{feature}</span>
+                      </motion.li>
                     ))}
                   </ul>
-                </div>
+                </motion.div>
 
                 {project.details.challenges && (
-                  <div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.7 }}
+                    className="rounded-xl border border-amber-900/50 bg-amber-950/20 p-6"
+                  >
                     <h2 className="mb-4 text-2xl font-bold text-zinc-100">
                       Challenges
                     </h2>
-                    <p className="text-zinc-400">
+                    <p className="leading-relaxed text-zinc-400">
                       {project.details.challenges}
                     </p>
-                  </div>
+                  </motion.div>
                 )}
 
                 {project.details.results && (
-                  <div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.8 }}
+                    className="rounded-xl border border-emerald-900/50 bg-emerald-950/20 p-6"
+                  >
                     <h2 className="mb-4 text-2xl font-bold text-zinc-100">
                       Results
                     </h2>
-                    <p className="text-zinc-400">{project.details.results}</p>
-                  </div>
+                    <p className="leading-relaxed text-zinc-400">
+                      {project.details.results}
+                    </p>
+                  </motion.div>
                 )}
               </div>
             )}

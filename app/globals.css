@@ -49,7 +49,7 @@ body {
 /* Horizontal scrollbar styling */
 .overflow-x-auto {
   scrollbar-width: thin;
-  scrollbar-color: #2a2a2a #1a1a1a;
+  scrollbar-color: #3a3a3a #1a1a1a;
 }
 
 .overflow-x-auto::-webkit-scrollbar {
@@ -62,10 +62,10 @@ body {
 }
 
 .overflow-x-auto::-webkit-scrollbar-thumb {
-  background: #2a2a2a;
+  background: #3a3a3a;
   border-radius: 4px;
 }
 
 .overflow-x-auto::-webkit-scrollbar-thumb:hover {
-  background: #3a3a3a;
+  background: #4a4a4a;
 }
