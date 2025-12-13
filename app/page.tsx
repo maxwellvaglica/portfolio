@@ -1,10 +1,10 @@
-'use client'
-import { motion } from 'motion/react'
-import { PROJECTS, WORK_EXPERIENCE, EMAIL, SOCIAL_LINKS } from './data'
-import Link from 'next/link'
-import { Timeline } from '@/components/ui/timeline'
-import { SectionSeparator } from '@/components/ui/section-separator'
-import { Footer } from './footer'
+"use client";
+import { motion } from "motion/react";
+import { PROJECTS, WORK_EXPERIENCE, EMAIL, SOCIAL_LINKS } from "./data";
+import Link from "next/link";
+import { Timeline } from "@/components/ui/timeline";
+import { SectionSeparator } from "@/components/ui/section-separator";
+import { Footer } from "./footer";
 
 const SKILLS = [
   'Python',
@@ -79,7 +79,7 @@ export default function Personal() {
         </motion.div>
       </div>
 
-      <div className="panel" style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
+      <div className="panel" style={{ paddingTop: "2rem", paddingBottom: "2rem" }}>
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -95,7 +95,7 @@ export default function Personal() {
                 key={project.id}
                 href={`/projects/${project.id}`}
                 className="card space-y-4 rounded-lg p-4 text-center transition-transform hover:scale-105 overflow-hidden"
-                style={{ width: '400px' }}
+                style={{ width: "400px" }}
               >
                 {project.image ? (
                   <img
@@ -154,10 +154,10 @@ export default function Personal() {
         >
           <h3 className="mb-8 text-4xl font-bold text-zinc-100">Connect</h3>
           <p className="mb-5 max-w-md text-zinc-400">
-            Feel free to contact me at{' '}
+            Feel free to contact me at{" "}
             <a
               className="underline"
-              style={{ color: 'rgb(var(--link-color))' }}
+              style={{ color: "rgb(var(--link-color))" }}
               href={`mailto:${EMAIL}`}
             >
               {EMAIL}
@@ -182,5 +182,5 @@ export default function Personal() {
         </motion.div>
       </div>
     </>
-  )
+  );
 }

@@ -2,7 +2,7 @@
 import { motion } from "motion/react";
 import { Briefcase, GraduationCap, Rocket } from "lucide-react";
 
-type TimelineItem = {
+type ExperienceItem = {
   title: string;
   subtitle: string;
   start: string;
@@ -10,8 +10,8 @@ type TimelineItem = {
   type: "work" | "education" | "future";
 };
 
-type TimelineProps = {
-  items: TimelineItem[];
+type ExperienceProps = {
+  items: ExperienceItem[];
 };
 
 const ICONS = {
@@ -20,7 +20,7 @@ const ICONS = {
   future: <Rocket size={20} />,
 };
 
-export const Timeline = ({ items }: TimelineProps) => {
+export const Experience = ({ items }: ExperienceProps) => {
   return (
     <div className="relative mx-auto max-w-2xl">
       <div className="absolute top-0 left-3.5 h-full w-px bg-zinc-700" />
@@ -50,3 +50,4 @@ export const Timeline = ({ items }: TimelineProps) => {
     </div>
   );
 };
+
