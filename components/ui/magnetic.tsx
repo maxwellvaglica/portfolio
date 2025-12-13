@@ -8,15 +8,15 @@ import {
   type SpringOptions,
 } from "motion/react";
 
-const SPRING_CONFIG = { stiffness: 26.7, damping: 4.1, mass: 0.2 }
+const SPRING_CONFIG = { stiffness: 26.7, damping: 4.1, mass: 0.2 };
 
 export type MagneticProps = {
-  children: React.ReactNode
-  intensity?: number
-  range?: number
+  children: React.ReactNode;
+  intensity?: number;
+  range?: number;
   actionArea?: "self" | "parent" | "global";
-  springOptions?: SpringOptions
-}
+  springOptions?: SpringOptions;
+};
 
 export function Magnetic({
   children,
@@ -37,18 +37,18 @@ export function Magnetic({
   useEffect(() => {
     const calculateDistance = (e: MouseEvent) => {
       if (ref.current) {
-        const rect = ref.current.getBoundingClientRect()
-        const centerX = rect.left + rect.width / 2
-        const centerY = rect.top + rect.height / 2
-        const distanceX = e.clientX - centerX
-        const distanceY = e.clientY - centerY
+        const rect = ref.current.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const distanceX = e.clientX - centerX;
+        const distanceY = e.clientY - centerY;
 
-        const absoluteDistance = Math.sqrt(distanceX ** 2 + distanceY ** 2)
+        const absoluteDistance = Math.sqrt(distanceX ** 2 + distanceY ** 2);
 
         if (isHovered && absoluteDistance <= range) {
-          const scale = 1 - absoluteDistance / range
-          x.set(distanceX * intensity * scale)
-          y.set(distanceY * intensity * scale)
+          const scale = 1 - absoluteDistance / range;
+          x.set(distanceX * intensity * scale);
+          y.set(distanceY * intensity * scale);
         } else {
           x.set(0);
           y.set(0);

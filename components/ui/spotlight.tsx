@@ -4,10 +4,10 @@ import { motion, useSpring, useTransform, SpringOptions } from "motion/react";
 import { cn } from "@/lib/utils";
 
 export type SpotlightProps = {
-  className?: string
-  size?: number
-  springOptions?: SpringOptions
-}
+  className?: string;
+  size?: number;
+  springOptions?: SpringOptions;
+};
 
 export function Spotlight({
   className,
@@ -26,7 +26,7 @@ export function Spotlight({
 
   useEffect(() => {
     if (containerRef.current) {
-      const parent = containerRef.current.parentElement
+      const parent = containerRef.current.parentElement;
       if (parent) {
         parent.style.position = "relative";
         parent.style.overflow = "hidden";

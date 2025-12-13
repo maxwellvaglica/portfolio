@@ -17,7 +17,9 @@ export default function ProjectPage({
     return (
       <div className="panel">
         <div className="mx-auto w-full max-w-4xl text-center">
-          <h1 className="text-4xl font-bold text-zinc-100">Project Not Found</h1>
+          <h1 className="text-4xl font-bold text-zinc-100">
+            Project Not Found
+          </h1>
           <p className="mt-4 text-zinc-400">
             The project you&apos;re looking for doesn&apos;t exist.
           </p>
@@ -29,12 +31,15 @@ export default function ProjectPage({
           </Link>
         </div>
       </div>
-    )
+    );
   }
 
   return (
     <>
-      <div className="panel" style={{ paddingTop: "3rem", paddingBottom: "3rem" }}>
+      <div
+        className="panel"
+        style={{ paddingTop: "3rem", paddingBottom: "3rem" }}
+      >
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { delay: 0.2 } }}
@@ -52,7 +57,9 @@ export default function ProjectPage({
               <h1 className="text-5xl font-bold text-zinc-100">
                 {project.name}
               </h1>
-              <p className="mt-3 text-lg text-zinc-400">{project.description}</p>
+              <p className="mt-3 text-lg text-zinc-400">
+                {project.description}
+              </p>
             </div>
 
             {(project.image || project.video) && (
@@ -156,4 +163,3 @@ export default function ProjectPage({
     </>
   );
 }
-

@@ -20,11 +20,11 @@ const NetworkBackground = () => {
     });
 
     interface Node {
-      x: number
-      y: number
-      vx: number
-      vy: number
-      radius: number
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      radius: number;
     }
 
     const nodes: Node[] = [];

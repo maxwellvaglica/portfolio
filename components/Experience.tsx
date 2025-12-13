@@ -50,4 +50,3 @@ export const Experience = ({ items }: ExperienceProps) => {
     </div>
   );
 };
-

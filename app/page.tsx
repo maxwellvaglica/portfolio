@@ -33,13 +33,15 @@ const TIMELINE_ITEMS = [
     type: "education" as const,
   },
   // Computational Biologist at Tempus Labs
-  ...WORK_EXPERIENCE.filter((item) => item.title !== "Phlebotomist").map((item) => ({
-    title: item.title,
-    subtitle: item.company,
-    start: item.start,
-    end: item.end,
-    type: "work" as const,
-  })),
+  ...WORK_EXPERIENCE.filter((item) => item.title !== "Phlebotomist").map(
+    (item) => ({
+      title: item.title,
+      subtitle: item.company,
+      start: item.start,
+      end: item.end,
+      type: "work" as const,
+    }),
+  ),
   // Indiana University
   {
     title: "Indiana University, Bloomington",
@@ -79,12 +81,15 @@ export default function Personal() {
         </motion.div>
       </div>
 
-      <div className="panel" style={{ paddingTop: "2rem", paddingBottom: "2rem" }}>
+      <div
+        className="panel"
+        style={{ paddingTop: "2rem", paddingBottom: "2rem" }}
+      >
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.5 }}
-          className="w-full max-w-6xl mx-auto"
+          className="mx-auto w-full max-w-6xl"
         >
           <h3 className="mb-6 text-center text-4xl font-bold text-zinc-100">
             Project Spotlight
@@ -94,7 +99,7 @@ export default function Personal() {
               <Link
                 key={project.id}
                 href={`/projects/${project.id}`}
-                className="card space-y-4 rounded-lg p-4 text-center transition-transform hover:scale-105 overflow-hidden"
+                className="card overflow-hidden rounded-lg p-4 text-center transition-transform hover:scale-105 space-y-4"
                 style={{ width: "400px" }}
               >
                 {project.image ? (

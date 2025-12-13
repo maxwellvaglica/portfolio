@@ -1,39 +1,39 @@
 type Project = {
-  name: string
-  description: string
-  link: string
-  video?: string
-  image?: string
-  id: string
+  name: string;
+  description: string;
+  link: string;
+  video?: string;
+  image?: string;
+  id: string;
   details?: {
-    overview: string
-    technologies: string[]
-    features: string[]
-    challenges?: string
-    results?: string
-  }
-}
+    overview: string;
+    technologies: string[];
+    features: string[];
+    challenges?: string;
+    results?: string;
+  };
+};
 
 type WorkExperience = {
-  company: string
-  title: string
-  start: string
-  end: string
-  link: string
-  id: string
-}
+  company: string;
+  title: string;
+  start: string;
+  end: string;
+  link: string;
+  id: string;
+};
 
 type BlogPost = {
-  title: string
-  description: string
-  link: string
-  uid: string
-}
+  title: string;
+  description: string;
+  link: string;
+  uid: string;
+};
 
 type SocialLink = {
-  label: string
-  link: string
-}
+  label: string;
+  link: string;
+};
 
 export const PROJECTS: Project[] = [
   {
@@ -46,7 +46,12 @@ export const PROJECTS: Project[] = [
     id: "project1",
     details: {
       overview: "A comprehensive cryptography project implementing RSA and Vigenere cipher algorithms with various cryptographic attacks. The project includes implementations of encryption/decryption, weak key detection, broadcast attacks, and parity oracle attacks using advanced mathematical techniques like the Chinese Remainder Theorem.",
-      technologies: ["Python", "Cryptography", "Number Theory", "Decimal Arithmetic"],
+      technologies: [
+        "Python",
+        "Cryptography",
+        "Number Theory",
+        "Decimal Arithmetic",
+      ],
       features: [
         "RSA encryption and decryption with key generation",
         "Vigenere cipher with dictionary attack",
@@ -54,8 +59,10 @@ export const PROJECTS: Project[] = [
         "RSA broadcast attack using Chinese Remainder Theorem",
         "Parity oracle attack for RSA plaintext recovery",
       ],
-      challenges: "Handling large number arithmetic for RSA operations, implementing efficient attacks on cryptographic systems, and managing precision issues with extremely large numbers using Python's Decimal module.",
-      results: "Successfully implemented multiple cryptographic algorithms and attacks, demonstrating understanding of both classical and modern cryptography principles. Achieved 100% score on the project.",
+      challenges:
+        "Handling large number arithmetic for RSA operations, implementing efficient attacks on cryptographic systems, and managing precision issues with extremely large numbers using Python's Decimal module.",
+      results:
+        "Successfully implemented multiple cryptographic algorithms and attacks, demonstrating understanding of both classical and modern cryptography principles. Achieved 100% score on the project.",
     },
   },
   {
@@ -68,7 +75,12 @@ export const PROJECTS: Project[] = [
     id: "project2",
     details: {
       overview: "A network analysis project that processes BGP (Border Gateway Protocol) routing data to analyze internet routing behavior. The project tracks unique advertised prefixes, autonomous systems, and identifies top ASes by prefix growth over time using real BGP data snapshots.",
-      technologies: ["Python", "pybgpstream", "Network Analysis", "BGP Protocol"],
+      technologies: [
+        "Python",
+        "pybgpstream",
+        "Network Analysis",
+        "BGP Protocol",
+      ],
       features: [
         "Unique prefix tracking over time",
         "Autonomous system identification and counting",
@@ -76,8 +88,10 @@ export const PROJECTS: Project[] = [
         "BGP routing table snapshot processing",
         "AS path parsing and analysis",
       ],
-      challenges: "Processing large-scale BGP routing data efficiently, parsing complex AS path structures, and handling multiple data snapshots to track changes over time.",
-      results: "Successfully analyzed BGP routing data to identify routing trends and autonomous system behavior, providing insights into internet routing dynamics.",
+      challenges:
+        "Processing large-scale BGP routing data efficiently, parsing complex AS path structures, and handling multiple data snapshots to track changes over time.",
+      results:
+        "Successfully analyzed BGP routing data to identify routing trends and autonomous system behavior, providing insights into internet routing dynamics.",
     },
   },
   {
@@ -90,7 +104,13 @@ export const PROJECTS: Project[] = [
     id: "project3",
     details: {
       overview: "A comprehensive machine learning project applying data science techniques to cybersecurity problems. The project includes data type detection, feature engineering, model development, and evaluation for security threat detection and analysis.",
-      technologies: ["Python", "Pandas", "NumPy", "Machine Learning", "Data Science"],
+      technologies: [
+        "Python",
+        "Pandas",
+        "NumPy",
+        "Machine Learning",
+        "Data Science",
+      ],
       features: [
         "Data type detection and conversion",
         "DataFrame manipulation and indexing",
@@ -98,8 +118,10 @@ export const PROJECTS: Project[] = [
         "Machine learning model development",
         "Model evaluation and validation",
       ],
-      challenges: "Handling diverse data types in security datasets, preprocessing noisy security data, and developing effective features for threat detection while maintaining model interpretability.",
-      results: "Successfully developed machine learning models for cybersecurity applications, demonstrating proficiency in data preprocessing and ML techniques. Achieved 100% score on the project.",
+      challenges:
+        "Handling diverse data types in security datasets, preprocessing noisy security data, and developing effective features for threat detection while maintaining model interpretability.",
+      results:
+        "Successfully developed machine learning models for cybersecurity applications, demonstrating proficiency in data preprocessing and ML techniques. Achieved 100% score on the project.",
     },
   },
 ];
