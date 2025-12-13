@@ -45,7 +45,8 @@ export const PROJECTS: Project[] = [
       "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=600&fit=crop&q=80",
     id: "project1",
     details: {
-      overview: "A comprehensive cryptography project implementing RSA and Vigenere cipher algorithms with various cryptographic attacks. The project includes implementations of encryption/decryption, weak key detection, broadcast attacks, and parity oracle attacks using advanced mathematical techniques like the Chinese Remainder Theorem.",
+      overview:
+        "A comprehensive cryptography project implementing RSA and Vigenere cipher algorithms with various cryptographic attacks. The project includes implementations of encryption/decryption, weak key detection, broadcast attacks, and parity oracle attacks using advanced mathematical techniques like the Chinese Remainder Theorem.",
       technologies: [
         "Python",
         "Cryptography",
@@ -74,7 +75,8 @@ export const PROJECTS: Project[] = [
       "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop&q=80",
     id: "project2",
     details: {
-      overview: "A network analysis project that processes BGP (Border Gateway Protocol) routing data to analyze internet routing behavior. The project tracks unique advertised prefixes, autonomous systems, and identifies top ASes by prefix growth over time using real BGP data snapshots.",
+      overview:
+        "A network analysis project that processes BGP (Border Gateway Protocol) routing data to analyze internet routing behavior. The project tracks unique advertised prefixes, autonomous systems, and identifies top ASes by prefix growth over time using real BGP data snapshots.",
       technologies: [
         "Python",
         "pybgpstream",
@@ -103,7 +105,8 @@ export const PROJECTS: Project[] = [
       "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=600&fit=crop&q=80",
     id: "project3",
     details: {
-      overview: "A comprehensive machine learning project applying data science techniques to cybersecurity problems. The project includes data type detection, feature engineering, model development, and evaluation for security threat detection and analysis.",
+      overview:
+        "A comprehensive machine learning project applying data science techniques to cybersecurity problems. The project includes data type detection, feature engineering, model development, and evaluation for security threat detection and analysis.",
       technologies: [
         "Python",
         "Pandas",

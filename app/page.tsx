@@ -99,7 +99,7 @@ export default function Personal() {
               <Link
                 key={project.id}
                 href={`/projects/${project.id}`}
-                className="card overflow-hidden rounded-lg p-4 text-center transition-transform hover:scale-105 space-y-4"
+                className="card space-y-4 overflow-hidden rounded-lg p-4 text-center transition-transform hover:scale-105"
                 style={{ width: "400px" }}
               >
                 {project.image ? (

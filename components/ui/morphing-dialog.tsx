@@ -32,7 +32,7 @@ const MorphingDialogContext =
   React.createContext<MorphingDialogContextType | null>(null);
 
 function useMorphingDialog() {
-  const context = useContext(MorphingDialogContext)
+  const context = useContext(MorphingDialogContext);
   if (!context) {
     throw new Error(
       "useMorphingDialog must be used within a MorphingDialogProvider",
@@ -369,7 +369,7 @@ function MorphingDialogImage({
       layoutId={`dialog-img-${uniqueId}`}
       style={style}
     />
-  )
+  );
 }
 
 export type MorphingDialogCloseProps = {
