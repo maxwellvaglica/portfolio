@@ -45,7 +45,7 @@ export const PROJECTS: Project[] = [
       "Deep learning pipeline using DeepLabCut to track rat body parts and detect rearing behavior from video data, achieving high accuracy after 350,000+ training iterations.",
     link: "#",
     image:
-      "https://images.unsplash.com/photo-1545987796-200677ee1011?w=800&h=600&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1719650592946-55163c4994cb?w=800&h=600&fit=crop&q=80",
     id: "deeplabcut",
     category: "Deep Learning",
     github: "https://github.com/maxwellvaglica/newman-memory-deeplabcut",
@@ -104,7 +104,7 @@ export const PROJECTS: Project[] = [
       "Large-scale data analysis of 4+ million players' spatial navigation patterns to identify cognitive biomarkers for dementia research, processing 78,000+ complete game sessions.",
     link: "#",
     image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&q=80",
+      "https://plus.unsplash.com/premium_photo-1681487767138-ddf2d67b35c1?w=800&h=600&fit=crop&q=80",
     id: "seaheroquest",
     category: "Data Science",
     github:
@@ -142,7 +142,7 @@ export const PROJECTS: Project[] = [
       "Full implementation of RSA encryption/decryption with cryptographic attacks including weak key detection, broadcast attacks using Chinese Remainder Theorem, and parity oracle exploits.",
     link: "#",
     image:
-      "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=600&fit=crop&q=80",
+      "https://plus.unsplash.com/premium_photo-1661963874418-df1110ee39c1?w=800&h=600&fit=crop&q=80",
     id: "cryptography",
     category: "Security",
     details: {
