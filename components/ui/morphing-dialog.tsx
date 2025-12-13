@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React, {
   useCallback,
@@ -8,18 +8,18 @@ import React, {
   useMemo,
   useRef,
   useState,
-} from 'react'
+} from "react";
 import {
   motion,
   AnimatePresence,
   MotionConfig,
   Transition,
   Variant,
-} from 'motion/react'
-import { createPortal } from 'react-dom'
-import { cn } from '@/lib/utils'
-import { XIcon } from 'lucide-react'
-import useClickOutside from '@/hooks/useClickOutside'
+} from "motion/react";
+import { createPortal } from "react-dom";
+import { cn } from "@/lib/utils";
+import { XIcon } from "lucide-react";
+import useClickOutside from "@/hooks/useClickOutside";
 
 export type MorphingDialogContextType = {
   isOpen: boolean
@@ -35,10 +35,10 @@ function useMorphingDialog() {
   const context = useContext(MorphingDialogContext)
   if (!context) {
     throw new Error(
-      'useMorphingDialog must be used within a MorphingDialogProvider',
-    )
+      "useMorphingDialog must be used within a MorphingDialogProvider",
+    );
   }
-  return context
+  return context;
 }
 
 export type MorphingDialogProviderProps = {
@@ -50,9 +50,9 @@ function MorphingDialogProvider({
   children,
   transition,
 }: MorphingDialogProviderProps) {
-  const [isOpen, setIsOpen] = useState(false)
-  const uniqueId = useId()
-  const triggerRef = useRef<HTMLDivElement>(null!)
+  const [isOpen, setIsOpen] = useState(false);
+  const uniqueId = useId();
+  const triggerRef = useRef<HTMLDivElement>(null!);
 
   const contextValue = useMemo(
     () => ({
@@ -62,13 +62,13 @@ function MorphingDialogProvider({
       triggerRef,
     }),
     [isOpen, uniqueId],
-  )
+  );
 
   return (
     <MorphingDialogContext.Provider value={contextValue}>
       <MotionConfig transition={transition}>{children}</MotionConfig>
     </MorphingDialogContext.Provider>
-  )
+  );
 }
 
 export type MorphingDialogProps = {
@@ -81,7 +81,7 @@ function MorphingDialog({ children, transition }: MorphingDialogProps) {
     <MorphingDialogProvider>
       <MotionConfig transition={transition}>{children}</MotionConfig>
     </MorphingDialogProvider>
-  )
+  );
 }
 
 export type MorphingDialogTriggerProps = {
@@ -105,19 +105,19 @@ function MorphingDialogTrigger({
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault()
-        setIsOpen(!isOpen)
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        setIsOpen(!isOpen);
       }
     },
     [isOpen, setIsOpen],
-  )
+  );
 
   return (
     <motion.div
       ref={triggerRef}
       layoutId={`dialog-${uniqueId}`}
-      className={cn('relative cursor-pointer', className)}
+      className={cn("relative cursor-pointer", className)}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       style={style}
@@ -143,72 +143,72 @@ function MorphingDialogContent({
   className,
   style,
 }: MorphingDialogContentProps) {
-  const { setIsOpen, isOpen, uniqueId, triggerRef } = useMorphingDialog()
-  const containerRef = useRef<HTMLDivElement>(null!)
+  const { setIsOpen, isOpen, uniqueId, triggerRef } = useMorphingDialog();
+  const containerRef = useRef<HTMLDivElement>(null!);
   const [firstFocusableElement, setFirstFocusableElement] =
-    useState<HTMLElement | null>(null)
+    useState<HTMLElement | null>(null);
   const [lastFocusableElement, setLastFocusableElement] =
-    useState<HTMLElement | null>(null)
+    useState<HTMLElement | null>(null);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setIsOpen(false)
+      if (event.key === "Escape") {
+        setIsOpen(false);
       }
-      if (event.key === 'Tab') {
-        if (!firstFocusableElement || !lastFocusableElement) return
+      if (event.key === "Tab") {
+        if (!firstFocusableElement || !lastFocusableElement) return;
 
         if (event.shiftKey) {
           if (document.activeElement === firstFocusableElement) {
-            event.preventDefault()
-            lastFocusableElement.focus()
+            event.preventDefault();
+            lastFocusableElement.focus();
           }
         } else {
           if (document.activeElement === lastFocusableElement) {
-            event.preventDefault()
-            firstFocusableElement.focus()
+            event.preventDefault();
+            firstFocusableElement.focus();
           }
         }
       }
-    }
+    };
 
-    document.addEventListener('keydown', handleKeyDown)
+    document.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown)
-    }
-  }, [setIsOpen, firstFocusableElement, lastFocusableElement])
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [setIsOpen, firstFocusableElement, lastFocusableElement]);
 
   useEffect(() => {
     if (isOpen) {
-      document.body.classList.add('overflow-hidden')
+      document.body.classList.add("overflow-hidden");
       const focusableElements = containerRef.current?.querySelectorAll(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
-      )
+        "button, [href], input, select, textarea, [tabindex]:not([tabindex=\"-1\"])",
+      );
       if (focusableElements && focusableElements.length > 0) {
-        setFirstFocusableElement(focusableElements[0] as HTMLElement)
+        setFirstFocusableElement(focusableElements[0] as HTMLElement);
         setLastFocusableElement(
           focusableElements[focusableElements.length - 1] as HTMLElement,
-        )
-        ;(focusableElements[0] as HTMLElement).focus()
+        );
+        (focusableElements[0] as HTMLElement).focus();
       }
     } else {
-      document.body.classList.remove('overflow-hidden')
-      triggerRef.current?.focus()
+      document.body.classList.remove("overflow-hidden");
+      triggerRef.current?.focus();
     }
-  }, [isOpen, triggerRef])
+  }, [isOpen, triggerRef]);
 
   useClickOutside(containerRef, () => {
     if (isOpen) {
-      setIsOpen(false)
+      setIsOpen(false);
     }
-  })
+  });
 
   return (
     <motion.div
       ref={containerRef}
       layoutId={`dialog-${uniqueId}`}
-      className={cn('overflow-hidden', className)}
+      className={cn("overflow-hidden", className)}
       style={style}
       role="dialog"
       aria-modal="true"
@@ -217,7 +217,7 @@ function MorphingDialogContent({
     >
       {children}
     </motion.div>
-  )
+  );
 }
 
 export type MorphingDialogContainerProps = {
@@ -227,15 +227,15 @@ export type MorphingDialogContainerProps = {
 }
 
 function MorphingDialogContainer({ children }: MorphingDialogContainerProps) {
-  const { isOpen, uniqueId } = useMorphingDialog()
-  const [mounted, setMounted] = useState(false)
+  const { isOpen, uniqueId } = useMorphingDialog();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true)
-    return () => setMounted(false)
-  }, [])
+    setMounted(true);
+    return () => setMounted(false);
+  }, []);
 
-  if (!mounted) return null
+  if (!mounted) return null;
 
   return createPortal(
     <AnimatePresence initial={false} mode="sync">
@@ -255,7 +255,7 @@ function MorphingDialogContainer({ children }: MorphingDialogContainerProps) {
       )}
     </AnimatePresence>,
     document.body,
-  )
+  );
 }
 
 export type MorphingDialogTitleProps = {
@@ -390,8 +390,8 @@ function MorphingDialogClose({
   const { setIsOpen, uniqueId } = useMorphingDialog()
 
   const handleClose = useCallback(() => {
-    setIsOpen(false)
-  }, [setIsOpen])
+    setIsOpen(false);
+  }, [setIsOpen]);
 
   return (
     <motion.button
@@ -399,7 +399,7 @@ function MorphingDialogClose({
       type="button"
       aria-label="Close dialog"
       key={`dialog-close-${uniqueId}`}
-      className={cn('absolute top-6 right-6', className)}
+      className={cn("absolute top-6 right-6", className)}
       initial="initial"
       animate="animate"
       exit="exit"
@@ -407,7 +407,7 @@ function MorphingDialogClose({
     >
       {children || <XIcon size={24} />}
     </motion.button>
-  )
+  );
 }
 
 export {

@@ -7,48 +7,48 @@ import { SectionSeparator } from "@/components/ui/section-separator";
 import { Footer } from "./footer";
 
 const SKILLS = [
-  'Python',
-  'SQL',
-  'Cloud Computing (GCP, Azure)',
-  'CI/CD',
-  'Machine Learning',
-  'Data Visualization/BI',
-]
+  "Python",
+  "SQL",
+  "Cloud Computing (GCP, Azure)",
+  "CI/CD",
+  "Machine Learning",
+  "Data Visualization/BI",
+];
 
 const TIMELINE_ITEMS = [
   // Future opportunity
   {
-    title: 'Your Company',
-    subtitle: 'Ready to make an impact',
-    start: '2026',
-    end: 'Future',
-    type: 'future' as const,
+    title: "Your Company",
+    subtitle: "Ready to make an impact",
+    start: "2026",
+    end: "Future",
+    type: "future" as const,
   },
   // OMSCS at Georgia Tech
   {
-    title: 'Georgia Institute of Technology',
-    subtitle: 'Master of Science in Computer Science',
-    start: '2024',
-    end: 'April 2026',
-    type: 'education' as const,
+    title: "Georgia Institute of Technology",
+    subtitle: "Master of Science in Computer Science",
+    start: "2024",
+    end: "April 2026",
+    type: "education" as const,
   },
   // Computational Biologist at Tempus Labs
-  ...WORK_EXPERIENCE.filter((item) => item.title !== 'Phlebotomist').map((item) => ({
+  ...WORK_EXPERIENCE.filter((item) => item.title !== "Phlebotomist").map((item) => ({
     title: item.title,
     subtitle: item.company,
     start: item.start,
     end: item.end,
-    type: 'work' as const,
+    type: "work" as const,
   })),
   // Indiana University
   {
-    title: 'Indiana University, Bloomington',
-    subtitle: 'Bachelor of Science in Cognitive Science',
-    start: '2017',
-    end: '2021',
-    type: 'education' as const,
+    title: "Indiana University, Bloomington",
+    subtitle: "Bachelor of Science in Cognitive Science",
+    start: "2017",
+    end: "2021",
+    type: "education" as const,
   },
-]
+];
 
 export default function Personal() {
   return (

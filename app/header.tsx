@@ -1,5 +1,5 @@
-'use client'
-import Link from 'next/link'
+"use client";
+import Link from "next/link";
 
 export function Header() {
   return (
@@ -11,5 +11,5 @@ export function Header() {
         <p className="text-zinc-400">Data Engineer & Software Engineer</p>
       </div>
     </header>
-  )
+  );
 }

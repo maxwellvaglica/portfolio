@@ -1,5 +1,5 @@
-'use client'
+"use client";
 
 export function Footer() {
-  return null
+  return null;
 }

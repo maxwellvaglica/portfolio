@@ -1,12 +1,12 @@
-'use client'
+"use client";
 
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from "react";
 import {
   motion,
   useMotionValue,
   useSpring,
   type SpringOptions,
-} from 'motion/react'
+} from "motion/react";
 
 const SPRING_CONFIG = { stiffness: 26.7, damping: 4.1, mass: 0.2 }
 
@@ -14,7 +14,7 @@ export type MagneticProps = {
   children: React.ReactNode
   intensity?: number
   range?: number
-  actionArea?: 'self' | 'parent' | 'global'
+  actionArea?: "self" | "parent" | "global";
   springOptions?: SpringOptions
 }
 
@@ -22,17 +22,17 @@ export function Magnetic({
   children,
   intensity = 0.6,
   range = 100,
-  actionArea = 'self',
+  actionArea = "self",
   springOptions = SPRING_CONFIG,
 }: MagneticProps) {
-  const [isHovered, setIsHovered] = useState(false)
-  const ref = useRef<HTMLDivElement>(null)
+  const [isHovered, setIsHovered] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
-  const x = useMotionValue(0)
-  const y = useMotionValue(0)
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
 
-  const springX = useSpring(x, springOptions)
-  const springY = useSpring(y, springOptions)
+  const springX = useSpring(x, springOptions);
+  const springY = useSpring(y, springOptions);
 
   useEffect(() => {
     const calculateDistance = (e: MouseEvent) => {
@@ -50,57 +50,57 @@ export function Magnetic({
           x.set(distanceX * intensity * scale)
           y.set(distanceY * intensity * scale)
         } else {
-          x.set(0)
-          y.set(0)
+          x.set(0);
+          y.set(0);
         }
       }
-    }
+    };
 
-    document.addEventListener('mousemove', calculateDistance)
+    document.addEventListener("mousemove", calculateDistance);
 
     return () => {
-      document.removeEventListener('mousemove', calculateDistance)
-    }
-  }, [ref, isHovered, intensity, range, x, y])
+      document.removeEventListener("mousemove", calculateDistance);
+    };
+  }, [ref, isHovered, intensity, range, x, y]);
 
   useEffect(() => {
-    if (actionArea === 'parent' && ref.current?.parentElement) {
-      const parent = ref.current.parentElement
+    if (actionArea === "parent" && ref.current?.parentElement) {
+      const parent = ref.current.parentElement;
 
-      const handleParentEnter = () => setIsHovered(true)
-      const handleParentLeave = () => setIsHovered(false)
+      const handleParentEnter = () => setIsHovered(true);
+      const handleParentLeave = () => setIsHovered(false);
 
-      parent.addEventListener('mouseenter', handleParentEnter)
-      parent.addEventListener('mouseleave', handleParentLeave)
+      parent.addEventListener("mouseenter", handleParentEnter);
+      parent.addEventListener("mouseleave", handleParentLeave);
 
       return () => {
-        parent.removeEventListener('mouseenter', handleParentEnter)
-        parent.removeEventListener('mouseleave', handleParentLeave)
-      }
-    } else if (actionArea === 'global') {
-      setIsHovered(true)
+        parent.removeEventListener("mouseenter", handleParentEnter);
+        parent.removeEventListener("mouseleave", handleParentLeave);
+      };
+    } else if (actionArea === "global") {
+      setIsHovered(true);
     }
-  }, [actionArea])
+  }, [actionArea]);
 
   const handleMouseEnter = () => {
-    if (actionArea === 'self') {
-      setIsHovered(true)
+    if (actionArea === "self") {
+      setIsHovered(true);
     }
-  }
+  };
 
   const handleMouseLeave = () => {
-    if (actionArea === 'self') {
-      setIsHovered(false)
-      x.set(0)
-      y.set(0)
+    if (actionArea === "self") {
+      setIsHovered(false);
+      x.set(0);
+      y.set(0);
     }
-  }
+  };
 
   return (
     <motion.div
       ref={ref}
-      onMouseEnter={actionArea === 'self' ? handleMouseEnter : undefined}
-      onMouseLeave={actionArea === 'self' ? handleMouseLeave : undefined}
+      onMouseEnter={actionArea === "self" ? handleMouseEnter : undefined}
+      onMouseLeave={actionArea === "self" ? handleMouseLeave : undefined}
       style={{
         x: springX,
         y: springY,
@@ -108,5 +108,5 @@ export function Magnetic({
     >
       {children}
     </motion.div>
-  )
+  );
 }

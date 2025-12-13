@@ -1,32 +1,32 @@
-import type { Metadata, Viewport } from 'next'
-import { Roboto_Mono } from 'next/font/google'
-import './globals.css'
-import { ThemeProvider } from 'next-themes'
-import NetworkBackground from '@/components/ui/network-background'
+import type { Metadata, Viewport } from "next";
+import { Roboto_Mono } from "next/font/google";
+import "./globals.css";
+import { ThemeProvider } from "next-themes";
+import NetworkBackground from "@/components/ui/network-background";
 
 export const viewport: Viewport = {
-  width: 'device-width',
+  width: "device-width",
   initialScale: 1,
-  themeColor: '#0A0A0A',
-}
+  themeColor: "#0A0A0A",
+};
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://nim-fawn.vercel.app/'),
+  metadataBase: new URL("https://nim-fawn.vercel.app/"),
   alternates: {
-    canonical: '/',
+    canonical: "/",
   },
   title: {
-    default: 'Maxwell Vaglica - Computational Biologist',
-    template: '%s | Maxwell Vaglica',
+    default: "Maxwell Vaglica - Computational Biologist",
+    template: "%s | Maxwell Vaglica",
   },
   description:
-    'Programmer with expertise in Python, cloud computing, SQL, and machine learning.',
-}
+    "Programmer with expertise in Python, cloud computing, SQL, and machine learning.",
+};
 
 const robotoMono = Roboto_Mono({
-  variable: '--font-roboto-mono',
-  subsets: ['latin'],
-})
+  variable: "--font-roboto-mono",
+  subsets: ["latin"],
+});
 
 export default function RootLayout({
   children,
@@ -49,5 +49,5 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }

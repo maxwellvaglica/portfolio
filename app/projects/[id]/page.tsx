@@ -1,17 +1,17 @@
-'use client'
-import { motion } from 'motion/react'
-import Link from 'next/link'
-import { use } from 'react'
-import { PROJECTS } from '@/app/data'
-import { Footer } from '@/app/footer'
+"use client";
+import { motion } from "motion/react";
+import Link from "next/link";
+import { use } from "react";
+import { PROJECTS } from "@/app/data";
+import { Footer } from "@/app/footer";
 
 export default function ProjectPage({
   params,
 }: {
-  params: Promise<{ id: string }>
+  params: Promise<{ id: string }>;
 }) {
-  const { id } = use(params)
-  const project = PROJECTS.find((p) => p.id === id)
+  const { id } = use(params);
+  const project = PROJECTS.find((p) => p.id === id);
 
   if (!project) {
     return (
@@ -19,7 +19,7 @@ export default function ProjectPage({
         <div className="mx-auto w-full max-w-4xl text-center">
           <h1 className="text-4xl font-bold text-zinc-100">Project Not Found</h1>
           <p className="mt-4 text-zinc-400">
-            The project you're looking for doesn't exist.
+            The project you&apos;re looking for doesn&apos;t exist.
           </p>
           <Link
             href="/"
@@ -34,7 +34,7 @@ export default function ProjectPage({
 
   return (
     <>
-      <div className="panel" style={{ paddingTop: '3rem', paddingBottom: '3rem' }}>
+      <div className="panel" style={{ paddingTop: "3rem", paddingBottom: "3rem" }}>
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { delay: 0.2 } }}
@@ -154,6 +154,6 @@ export default function ProjectPage({
         </div>
       </div>
     </>
-  )
+  );
 }
 
