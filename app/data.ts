@@ -6,6 +6,8 @@ type Project = {
   image?: string;
   id: string;
   category?: string;
+  github?: string;
+  iterationImages?: { src: string; label: string; iterations: string }[];
   details?: {
     overview: string;
     technologies: string[];
@@ -37,6 +39,103 @@ type SocialLink = {
 };
 
 export const PROJECTS: Project[] = [
+  {
+    name: "DeepLabCut: Rat Behavior Analysis",
+    description:
+      "Deep learning pipeline using DeepLabCut to track rat body parts and detect rearing behavior from video data, achieving high accuracy after 350,000+ training iterations.",
+    link: "#",
+    image:
+      "https://images.unsplash.com/photo-1545987796-200677ee1011?w=800&h=600&fit=crop&q=80",
+    id: "deeplabcut",
+    category: "Deep Learning",
+    github: "https://github.com/maxwellvaglica/newman-memory-deeplabcut",
+    iterationImages: [
+      {
+        src: "/rat_25000it.png",
+        label: "25K Iterations",
+        iterations: "25,000",
+      },
+      {
+        src: "/rat_50000it.png",
+        label: "50K Iterations",
+        iterations: "50,000",
+      },
+      {
+        src: "/rat_100000it.png",
+        label: "100K Iterations",
+        iterations: "100,000",
+      },
+      {
+        src: "/rat_350000it.png",
+        label: "350K Iterations",
+        iterations: "350,000",
+      },
+    ],
+    details: {
+      overview:
+        "A comprehensive deep learning pipeline for analyzing rat rearing behavior using DeepLabCut pose estimation. The project trains a ResNet-50 neural network to track five body parts (nosetip, ears, top back, tail base) and uses spatial relationships between these points to automatically detect rearing events. The model dramatically improves accuracy from 25,000 to 350,000 training iterations, demonstrating the importance of extensive training for pose estimation tasks.",
+      technologies: [
+        "Python",
+        "DeepLabCut",
+        "TensorFlow",
+        "ResNet-50",
+        "Computer Vision",
+        "Pose Estimation",
+        "Google Colab",
+        "Pandas",
+      ],
+      features: [
+        "Custom pose estimation model training with 350,000+ iterations",
+        "Automated body part tracking (nosetip, ears, back, tail)",
+        "Rearing behavior detection algorithm based on spatial relationships",
+        "Interactive threshold calibration using staircase method",
+        "Labeled video output with tracked body part overlays",
+        "CSV export of frame-by-frame behavior classification",
+      ],
+      challenges:
+        "Training deep neural networks for accurate pose estimation required extensive GPU compute time and careful hyperparameter tuning. Developing a robust rearing detection algorithm that works across different lighting conditions and camera angles was particularly challenging.",
+      results:
+        "Successfully trained a high-accuracy pose estimation model that dramatically improves from 25K to 350K iterations. The system can automatically detect rearing behavior in hours of video footage, replacing manual annotation that would take days.",
+    },
+  },
+  {
+    name: "Sea Hero Quest: Clinical Data Analysis",
+    description:
+      "Large-scale data analysis of 4+ million players' spatial navigation patterns to identify cognitive biomarkers for dementia research, processing 78,000+ complete game sessions.",
+    link: "#",
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&q=80",
+    id: "seaheroquest",
+    category: "Data Science",
+    github:
+      "https://github.com/maxwellvaglica/SeaHeroQuest-Clinical-Experiment-Analysis",
+    details: {
+      overview:
+        "Analysis of raw gameplay data from Sea Hero Quest, a citizen science mobile game designed to collect spatial navigation data for dementia research. This project processes data from over 4 million players to identify patterns in navigation performance that could serve as early biomarkers for Alzheimer's disease. The analysis includes cross-level correlations, age-based performance analysis, and predictive modeling.",
+      technologies: [
+        "Python",
+        "Pandas",
+        "Dask",
+        "NumPy",
+        "SciPy",
+        "Matplotlib",
+        "Big Data Processing",
+        "Statistical Analysis",
+      ],
+      features: [
+        "Processing 78,000+ complete game sessions across 74 levels",
+        "74×74 cross-correlation matrix for level performance analysis",
+        "Z-score categorization and percentile ranking systems",
+        "Quintile segmentation for player performance grouping",
+        "Predictive modeling achieving ~60% accuracy on later level performance",
+        "Age-based cognitive performance correlation analysis",
+      ],
+      challenges:
+        "Processing millions of gameplay records required efficient big data techniques using Dask for parallel processing. Identifying meaningful patterns in noisy gameplay data while controlling for confounding variables like game difficulty and player demographics was a significant analytical challenge.",
+      results:
+        "Discovered that levels 43, 52, 53, 58 & 71 show the strongest correlation with overall cognitive performance, all sharing 'hard' difficulty and 'checkpoint' level types. Interestingly, age was NOT a significant predictor of performance, challenging common assumptions about cognitive decline.",
+    },
+  },
   {
     name: "Cryptography: RSA & Vigenere Cipher",
     description:

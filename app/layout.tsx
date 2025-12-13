@@ -16,11 +16,14 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   title: {
-    default: "Maxwell Vaglica - Computational Biologist",
+    default: "Maxwell Vaglica - Aspiring Engineer",
     template: "%s | Maxwell Vaglica",
   },
   description:
-    "Programmer with expertise in Python, cloud computing, SQL, and machine learning.",
+    "Data Engineer & Software Developer with expertise in Python, cloud computing, machine learning, and data pipelines.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 const robotoMono = Roboto_Mono({

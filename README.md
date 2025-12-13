@@ -1,40 +1,102 @@
-<img src="/public/cover.jpg" alt="Cover image representing Nim, a personal website template" width="100%" />
+# Maxwell Vaglica - Portfolio
 
-Nim is a free and open-source personal website template built with Next.js 15, React 19, Tailwind CSS v4, and Motion. Designed for developers, designers, and founders, it combines minimalism with delightful animated components powered by [Motion-Primitives](https://motion-primitives.com).
+A personal portfolio website showcasing my work as a Data Engineer & Software Developer, built with Next.js 15, React 19, Tailwind CSS, and Motion.
 
-Live demo: [https://nim-fawn.vercel.app](https://nim-fawn.vercel.app)
+🌐 **Live Site**: [maxvaglica.com](https://www.maxvaglica.com)
 
-## Features
+## About Me
 
-- Minimal one-page portfolio layout.
-- Blog support with MDX.
-- Responsive and accessible design.
-- Easy to use
-- [Motion-Primitives](https://motion-primitives.com) for animated components.
+I'm a Data Engineer & Software Developer with 4+ years of experience building production data pipelines, cloud-based applications, and machine learning systems. Currently pursuing a Master of Science in Computer Science at Georgia Tech with a focus on Machine Learning (3.9 GPA).
 
-## Getting Started
+### Skills
+- **Languages**: Python, SQL
+- **Cloud**: Google Cloud Platform (GCP), BigQuery
+- **Frameworks**: FastAPI, PyTorch, Scikit-learn, Pandas
+- **Tools**: CI/CD, Data Pipelines, REST APIs
 
-For detailed setup instructions, refer to the [Installation Guide](./INSTALLATION.md).
+## Featured Projects
+
+### 🧠 DeepLabCut: Rat Behavior Analysis
+Deep learning pipeline using DeepLabCut to track rat body parts and detect rearing behavior from video data. Achieved high accuracy after 350,000+ training iterations using ResNet-50.
+
+**Technologies**: Python, DeepLabCut, TensorFlow, Computer Vision
+
+[View Project →](https://github.com/maxwellvaglica/newman-memory-deeplabcut)
+
+### 🚢 Sea Hero Quest: Clinical Data Analysis
+Large-scale data analysis of 4+ million players' spatial navigation patterns to identify cognitive biomarkers for dementia research, processing 78,000+ complete game sessions.
+
+**Technologies**: Python, Pandas, Dask, Statistical Analysis
+
+[View Project →](https://github.com/maxwellvaglica/SeaHeroQuest-Clinical-Experiment-Analysis)
+
+### 📈 Trading Strategy Evaluation
+ML-based trading system using ensemble methods (BagLearner with Random Trees) to predict stock movements, with full backtesting simulation including transaction costs.
+
+**Technologies**: Python, Machine Learning, Ensemble Methods
+
+## All Projects
+
+| Project | Category | Key Technologies |
+|---------|----------|-----------------|
+| DeepLabCut: Rat Behavior Analysis | Deep Learning | Python, TensorFlow, Computer Vision |
+| Sea Hero Quest Analysis | Data Science | Python, Pandas, Dask, Big Data |
+| Trading Strategy Evaluation | Machine Learning | Python, Ensemble Methods |
+| Cryptography: RSA & Vigenere | Security | Python, Number Theory |
+| BGP Hijacking Simulation | Networking | Python, Mininet, Network Security |
+| BGP Measurements & Analysis | Networking | Python, pybgpstream |
+| SDN Firewall | Networking | Python, OpenFlow, SDN |
+| ML for Cybersecurity | Machine Learning | Python, Scikit-learn |
+| API Security Testing | Security | Python, Penetration Testing |
+| Web Security Assessment | Security | OWASP Top 10 |
+| Q-Learner Trading | Machine Learning | Python, Reinforcement Learning |
+| Technical Indicators | Machine Learning | Python, Quantitative Finance |
+| Power System Neural Network | Deep Learning | Python, PyTorch |
+| PLC Programming | Systems | Structured Text, Industrial Automation |
+
+## Experience
+
+- **Computational Biologist** at Tempus Labs (2021 - Present)
+  - Developed pipelines for nucleic acid sequencing tracking
+  - Built RESTful APIs using FastAPI
+  - Deployed cloud-based web applications on GCP
+
+- **Research Programmer** at Indiana University (2019 - 2021)
+  - Newman Memory Laboratory research
+
+## Education
+
+- **MS Computer Science** - Georgia Institute of Technology (Expected 2026)
+  - Machine Learning Specialization, 3.9 GPA
+
+- **BS Cognitive Science** - Indiana University, Bloomington (2021)
+
+## Local Development
 
 ```bash
-git clone https://github.com/ibelick/nim.git
-cd nim
+# Clone the repository
+git clone https://github.com/maxwellvaglica/portfolio.git
+cd portfolio
+
+# Install dependencies
 npm install
+
+# Run development server
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## Contributing
-
-Contributions are welcome! Feel free to open issues or submit pull requests to improve Nim.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
 ## Deployment
 
-You can deploy your site to any hosting platform that supports Next.js. For the easiest deployment experience, consider using Vercel:
+This site is deployed on Vercel. Any push to the `main` branch automatically triggers a new deployment.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fibelick%2Fnim&env=NEXT_PUBLIC_SITE_URL&project-name=nim&repository-name=nim&redirect-url=https%3A%2F%2Ftwitter.com%2Fibelick&demo-title=Nim&demo-description=Nim%20is%20a%20free%20and%20open-source%20minimal%20personal%20website%20template%20built%20with%20Next.js%2015%2C%20React%2019%2C%20and%20Motion-Primitives.&demo-url=https%3A%2F%2Fnim.vercel.app&demo-image=https%3A%2F%2Fraw.githubusercontent.com%2Fibelick%2Fnim%2Frefs%2Fheads%2Fmain%2F.github%2Fassets%2Freadme.png&teamSlug=ibelick)
+## Contact
 
-## About
+- **Email**: maxvaglica@gmail.com
+- **LinkedIn**: [linkedin.com/in/max-vaglica](https://www.linkedin.com/in/max-vaglica)
+- **GitHub**: [github.com/maxwellvaglica](https://github.com/maxwellvaglica)
 
-Nim is designed to make personal branding effortless and beautiful. If you enjoy it, consider sharing it and exploring [Motion-Primitives Pro](https://pro.motion-primitives.com/).
+---
+
+Built with Next.js, React, Tailwind CSS, and Motion-Primitives.

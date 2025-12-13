@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Background -->
+  <rect width="32" height="32" rx="6" fill="#18181b"/>
+  
+  <!-- Neural network connections -->
+  <line x1="8" y1="8" x2="16" y2="16" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="8" y1="24" x2="16" y2="16" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="16" y1="16" x2="24" y2="8" stroke="#8b5cf6" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="16" y1="16" x2="24" y2="24" stroke="#8b5cf6" stroke-width="1.5" stroke-linecap="round"/>
+  
+  <!-- Input nodes -->
+  <circle cx="8" cy="8" r="3" fill="#3b82f6"/>
+  <circle cx="8" cy="24" r="3" fill="#3b82f6"/>
+  
+  <!-- Hidden node -->
+  <circle cx="16" cy="16" r="4" fill="#8b5cf6"/>
+  
+  <!-- Output nodes -->
+  <circle cx="24" cy="8" r="3" fill="#ec4899"/>
+  <circle cx="24" cy="24" r="3" fill="#ec4899"/>
+</svg>
+

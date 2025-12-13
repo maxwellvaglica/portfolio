@@ -26,14 +26,6 @@ const HIGHLIGHTS = [
 ];
 
 const TIMELINE_ITEMS = [
-  // Future opportunity
-  {
-    title: "Your Company",
-    subtitle: "Ready to make an impact",
-    start: "2026",
-    end: "Future",
-    type: "future" as const,
-  },
   // OMSCS at Georgia Tech
   {
     title: "Georgia Institute of Technology",
@@ -65,8 +57,8 @@ const TIMELINE_ITEMS = [
 export default function Personal() {
   // Top 3 featured projects (most impressive/important)
   const FEATURED_PROJECTS = [
-    PROJECTS.find((p) => p.id === "cryptography"),
-    PROJECTS.find((p) => p.id === "bgp-hijacking"),
+    PROJECTS.find((p) => p.id === "deeplabcut"),
+    PROJECTS.find((p) => p.id === "seaheroquest"),
     PROJECTS.find((p) => p.id === "strategy-evaluation"),
   ].filter(Boolean) as typeof PROJECTS;
 
@@ -77,12 +69,12 @@ export default function Personal() {
 
   const [currentFeaturedIndex, setCurrentFeaturedIndex] = useState(0);
 
-  // Auto-rotate carousel
+  // Auto-rotate carousel (8 seconds per slide)
   useEffect(() => {
     if (FEATURED_PROJECTS.length === 0) return;
     const interval = setInterval(() => {
       setCurrentFeaturedIndex((prev) => (prev + 1) % FEATURED_PROJECTS.length);
-    }, 5000);
+    }, 8000);
     return () => clearInterval(interval);
   }, [FEATURED_PROJECTS.length]);
 
