@@ -3,6 +3,22 @@ import { useRef, useEffect } from "react";
 
 const NetworkBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const scrollProgressRef = useRef(0);
+
+  // Track scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const progress = Math.min(window.scrollY / scrollHeight, 1);
+      scrollProgressRef.current = progress;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // Initial call
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -14,10 +30,12 @@ const NetworkBackground = () => {
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    window.addEventListener("resize", () => {
+    const handleResize = () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
-    });
+    };
+
+    window.addEventListener("resize", handleResize);
 
     interface Node {
       x: number;
@@ -40,11 +58,40 @@ const NetworkBackground = () => {
       });
     }
 
+    // Color interpolation function
+    const interpolateColor = (progress: number) => {
+      // Start: Teal (10, 200, 150)
+      // Middle (0.5): Yellow (255, 200, 50)
+      // End (1.0): Orange (255, 120, 30)
+
+      let r, g, b;
+
+      if (progress < 0.5) {
+        // Teal to Yellow (0 to 0.5)
+        const t = progress * 2; // normalize to 0-1
+        r = Math.round(10 + (255 - 10) * t);
+        g = Math.round(200 + (200 - 200) * t);
+        b = Math.round(150 + (50 - 150) * t);
+      } else {
+        // Yellow to Orange (0.5 to 1)
+        const t = (progress - 0.5) * 2; // normalize to 0-1
+        r = Math.round(255 + (255 - 255) * t);
+        g = Math.round(200 + (120 - 200) * t);
+        b = Math.round(50 + (30 - 50) * t);
+      }
+
+      return { r, g, b };
+    };
+
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
 
-      ctx.strokeStyle = "rgba(10, 200, 150, 0.2)";
-      ctx.fillStyle = "rgba(10, 200, 150, 0.5)";
+      const color = interpolateColor(scrollProgressRef.current);
+      const strokeColor = `rgba(${color.r}, ${color.g}, ${color.b}, 0.2)`;
+      const fillColor = `rgba(${color.r}, ${color.g}, ${color.b}, 0.5)`;
+
+      ctx.strokeStyle = strokeColor;
+      ctx.fillStyle = fillColor;
 
       nodes.forEach((node) => {
         ctx.beginPath();
@@ -85,6 +132,10 @@ const NetworkBackground = () => {
     };
 
     animate();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   return <canvas ref={canvasRef} className="fixed top-0 left-0 -z-10" />;

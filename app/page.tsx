@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "motion/react";
-import { PROJECTS, WORK_EXPERIENCE, EMAIL, SOCIAL_LINKS } from "./data";
+import { PROJECTS, EMAIL, SOCIAL_LINKS } from "./data";
 import Link from "next/link";
 import { Timeline } from "@/components/ui/timeline";
 import { SectionSeparator } from "@/components/ui/section-separator";
@@ -33,17 +33,92 @@ const TIMELINE_ITEMS = [
     start: "2024",
     end: "April 2026",
     type: "education" as const,
+    description:
+      "Pursuing a Master's degree in Computer Science with a specialization in Machine Learning. Maintaining a 3.9 GPA while working full-time as a Computational Biologist. Coursework includes advanced machine learning, computer networks, cybersecurity, and quantitative finance.",
+    highlights: [
+      "Machine Learning specialization with 3.9 GPA",
+      "Completed 8 graduate-level courses while working full-time",
+      "Projects spanning ML, networking, security, and systems",
+      "Expected graduation: April 2026",
+    ],
+    skills: [
+      "Machine Learning",
+      "Deep Learning",
+      "PyTorch",
+      "Computer Networks",
+      "Cybersecurity",
+      "Reinforcement Learning",
+    ],
+    projects: [
+      { name: "Trading Strategy Evaluation", id: "strategy-evaluation" },
+      { name: "Cryptography: RSA & Vigenere", id: "cryptography" },
+      { name: "BGP Hijacking Simulation", id: "bgp-hijacking" },
+      { name: "Q-Learner Trading", id: "qlearner" },
+      { name: "ML for Cybersecurity", id: "ml-cybersecurity" },
+      { name: "Power System Neural Network", id: "power-system-nn" },
+    ],
   },
   // Computational Biologist at Tempus Labs
-  ...WORK_EXPERIENCE.filter((item) => item.title !== "Phlebotomist").map(
-    (item) => ({
-      title: item.title,
-      subtitle: item.company,
-      start: item.start,
-      end: item.end,
-      type: "work" as const,
-    }),
-  ),
+  {
+    title: "Computational Biologist",
+    subtitle: "Tempus Labs",
+    start: "2021",
+    end: "Present",
+    type: "work" as const,
+    description:
+      "Building production data pipelines, cloud applications, and automation systems for precision medicine. Developed systems serving 100+ users across multiple laboratories nationwide, integrating laboratory devices with databases and deploying cloud-based applications on GCP.",
+    highlights: [
+      "Developed nucleic acid sequencing pipeline used by 100+ users for 2+ years",
+      "Built and maintained large-scale databases handling 30+ concurrent users",
+      "Established RESTful APIs using FastAPI for third-party integrations",
+      "Deployed cloud-based web applications for laboratory automation on GCP",
+      "Integrated laboratory devices with internal databases reducing manual entry",
+      "Set up automated label printing systems across Chicago laboratories",
+    ],
+    skills: [
+      "Python",
+      "FastAPI",
+      "GCP",
+      "BigQuery",
+      "SQL",
+      "Data Pipelines",
+      "CI/CD",
+      "Kubernetes",
+      "Docker",
+      "REST APIs",
+    ],
+  },
+  // Research Programmer at IU
+  {
+    title: "Research Programmer",
+    subtitle: "Indiana University - Newman Memory Lab",
+    start: "2019",
+    end: "2021",
+    type: "work" as const,
+    description:
+      "Developed machine learning pipelines for neuroscience research at the Newman Memory Laboratory. Built deep learning models for video analysis and conducted large-scale data analysis for cognitive science research projects.",
+    highlights: [
+      "Built DeepLabCut pipeline for automated rat behavior tracking",
+      "Trained ResNet-50 model with 350,000+ iterations for pose estimation",
+      "Analyzed 4+ million gameplay sessions for dementia research",
+      "Developed automated video analysis reducing manual annotation time",
+      "Created data processing pipelines for large-scale behavioral datasets",
+    ],
+    skills: [
+      "Python",
+      "DeepLabCut",
+      "TensorFlow",
+      "Computer Vision",
+      "Pandas",
+      "Data Analysis",
+      "Big Data",
+      "Statistical Analysis",
+    ],
+    projects: [
+      { name: "DeepLabCut: Rat Behavior Analysis", id: "deeplabcut" },
+      { name: "Sea Hero Quest: Clinical Analysis", id: "seaheroquest" },
+    ],
+  },
   // Indiana University
   {
     title: "Indiana University, Bloomington",
@@ -51,6 +126,26 @@ const TIMELINE_ITEMS = [
     start: "2017",
     end: "2021",
     type: "education" as const,
+    description:
+      "Earned a Bachelor of Science in Cognitive Science, combining psychology, neuroscience, computer science, and philosophy. Developed a strong foundation in research methodology, statistical analysis, and programming that led to a research programmer position at the Newman Memory Laboratory.",
+    highlights: [
+      "Interdisciplinary degree combining psychology, neuroscience, and CS",
+      "Two years as research programmer in Newman Memory Laboratory",
+      "Developed programming skills in Python and data analysis",
+      "Strong foundation in cognitive psychology and neuroscience",
+    ],
+    skills: [
+      "Python",
+      "Research Methods",
+      "Statistical Analysis",
+      "Cognitive Psychology",
+      "Neuroscience",
+      "Data Analysis",
+    ],
+    projects: [
+      { name: "DeepLabCut: Rat Behavior Analysis", id: "deeplabcut" },
+      { name: "Sea Hero Quest: Clinical Analysis", id: "seaheroquest" },
+    ],
   },
 ];
 
@@ -126,7 +221,7 @@ export default function Personal() {
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.5 }}
+          viewport={{ once: true, amount: 0.1 }}
           className="mx-auto w-full max-w-7xl"
         >
           <h3 className="mb-8 text-center text-4xl font-bold text-zinc-100">
@@ -362,7 +457,7 @@ export default function Personal() {
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.5 }}
+          viewport={{ once: true, amount: 0.2 }}
           className="w-full"
         >
           <h3 className="mb-8 text-center text-4xl font-bold text-zinc-100">
@@ -382,7 +477,7 @@ export default function Personal() {
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: false, amount: 0.5 }}
+          viewport={{ once: false, amount: 0.2 }}
           className="text-center"
         >
           <h3 className="mb-8 text-4xl font-bold text-zinc-100">Connect</h3>
