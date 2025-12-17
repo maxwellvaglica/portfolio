@@ -1,3 +1,13 @@
+type LeetCodeProblem = {
+  name: string;
+  difficulty: "Easy" | "Medium" | "Hard";
+  language: string;
+  description: string;
+  example: string;
+  approach: string;
+  code: string;
+};
+
 type Project = {
   name: string;
   description: string;
@@ -8,6 +18,7 @@ type Project = {
   category?: string;
   github?: string;
   iterationImages?: { src: string; label: string; iterations: string }[];
+  problems?: LeetCodeProblem[];
   details?: {
     overview: string;
     technologies: string[];
@@ -48,7 +59,6 @@ export const PROJECTS: Project[] = [
       "https://images.unsplash.com/photo-1719650592946-55163c4994cb?w=800&h=600&fit=crop&q=80",
     id: "deeplabcut",
     category: "Deep Learning",
-    github: "https://github.com/maxwellvaglica/newman-memory-deeplabcut",
     iterationImages: [
       {
         src: "/rat_25000it.png",
@@ -99,6 +109,190 @@ export const PROJECTS: Project[] = [
     },
   },
   {
+    name: "LeetCode Problem Solutions",
+    description:
+      "Collection of algorithmic coding challenges solved in Python and C++, covering data structures, string manipulation, and SQL/Pandas data analysis across easy to hard difficulty levels.",
+    link: "#",
+    image:
+      "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=800&h=600&fit=crop&q=80",
+    id: "leetcode",
+    category: "Algorithms",
+    github: "https://github.com/maxwellvaglica/leetcode",
+    problems: [
+      {
+        name: "Trips and Users",
+        difficulty: "Hard",
+        language: "Python (Pandas)",
+        description:
+          "Calculate the cancellation rate of taxi trips for unbanned users. Requires complex data manipulation with multiple table joins and aggregations.",
+        example:
+          "Input: trips table, users table → Output: Cancellation Rate per day",
+        approach:
+          "Merge trips with users table twice (for clients and drivers), filter out banned users, then calculate cancellation rates using groupby aggregations.",
+        code: `import pandas as pd
+
+def trips_and_users(trips: pd.DataFrame, users: pd.DataFrame) -> pd.DataFrame:
+    mdf = pd.merge(trips, users[users['role']=='client'], 
+                   left_on='client_id', right_on='users_id')
+    mdf = pd.merge(mdf, users[users['role']=='driver'], 
+                   left_on='driver_id', right_on='users_id')
+    mdf = mdf[(mdf['client_banned']=='No') & (mdf['drivers_banned']=='No')]
+    # Calculate cancellation rate by day
+    totals = before.groupby('request_at').count() / after.groupby('request_at').count()
+    return totals[['Day', 'Cancellation Rate']]`,
+      },
+      {
+        name: "Validate IP Address",
+        difficulty: "Medium",
+        language: "Python",
+        description:
+          "Determine if a given string is a valid IPv4 address, IPv6 address, or neither. Must handle edge cases like leading zeros and invalid characters.",
+        example:
+          'Input: "172.16.254.1" → Output: "IPv4" | Input: "2001:0db8:85a3:0:0:8A2E:0370:7334" → Output: "IPv6"',
+        approach:
+          "Use regex patterns to validate IPv4 and IPv6 formats, with additional validation for IPv4 segment ranges (0-255).",
+        code: `import re
+class Solution:
+    def validIPAddress(self, queryIP: str) -> str:
+        return 'IPv6' if ':' in queryIP and re.match(
+            r'^(([\\d]|[a-fA-F]){1,4}:){7}([\\d]|[a-fA-F]){1,4}$', queryIP
+        ) else 'IPv4' if re.match(
+            r'^((([1-9]\\d{0,2})|([0]))[.]){3}(([1-9]\\d{0,2})|([0]))$', queryIP
+        ) and all(0 <= int(seg) <= 255 for seg in queryIP.split('.')) else 'Neither'`,
+      },
+      {
+        name: "Find All Duplicates in Array",
+        difficulty: "Medium",
+        language: "C++",
+        description:
+          "Find all elements that appear twice in an array where all integers are in range [1, n]. Must run in O(n) time with constant extra space.",
+        example: "Input: [4,3,2,7,8,2,3,1] → Output: [2,3]",
+        approach:
+          "Track seen elements and identify duplicates by checking if an element has been encountered before.",
+        code: `class Solution {
+public:
+    vector<int> findDuplicates(vector<int>& nums) {
+        vector<int> dups;
+        vector<int> used;
+        for (int i: nums) {
+            if (std::find(used.begin(), used.end(), i) != used.end()) {
+                dups.insert(dups.end(), i);
+            } else {
+                used.insert(used.begin(), i);
+            }
+        }
+        return dups;
+    }
+};`,
+      },
+      {
+        name: "Two Sum",
+        difficulty: "Easy",
+        language: "C++",
+        description:
+          "Find two numbers in an array that add up to a target value. Return their indices.",
+        example: "Input: nums = [2,7,11,15], target = 9 → Output: [0,1]",
+        approach:
+          "Iterate through all pairs to find the combination that sums to target.",
+        code: `class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int> out;
+        for (int i = 0; i < nums.size(); i++) {
+            for (int j = 0; j < nums.size(); j++) {
+                if (i != j && nums[i] + nums[j] == target) {
+                    out.insert(out.end(), j);
+                    out.insert(out.begin(), i);
+                    return out;
+                }
+            }
+        }
+        return out;
+    }
+};`,
+      },
+      {
+        name: "Remove Duplicates from Sorted Array",
+        difficulty: "Easy",
+        language: "C++ & Python",
+        description:
+          "Remove duplicates in-place from a sorted array such that each element appears only once. Return the number of unique elements.",
+        example:
+          "Input: [0,0,1,1,1,2,2,3,3,4] → Output: 5, nums = [0,1,2,3,4,...]",
+        approach:
+          "Track unique elements seen so far and rebuild the array with only unique values.",
+        code: `// C++ Solution
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        vector<int> used = {};
+        int unique = 0;
+        for (int i: nums) {
+            bool is_used = false;
+            for (int u: used) {
+                if (i == u) { is_used = true; break; }
+            }
+            if (!is_used) {
+                unique++;
+                used.insert(used.end(), i);
+            }
+        }
+        nums.clear();
+        for (int i: used) nums.insert(nums.end(), i);
+        return unique;
+    }
+};`,
+      },
+      {
+        name: "Water Bottles",
+        difficulty: "Easy",
+        language: "Python",
+        description:
+          "Calculate maximum water bottles you can drink given initial bottles and exchange rate for empty bottles.",
+        example:
+          "Input: numBottles = 15, numExchange = 4 → Output: 19 (15 + 3 + 1)",
+        approach:
+          "Simulate drinking and exchanging bottles until no more exchanges are possible.",
+        code: `class Solution:
+    def numWaterBottles(self, numBottles: int, numExchange: int) -> int:
+        consumed = numBottles
+        exchange = numBottles // numExchange
+        consumed += exchange
+        left_over = numBottles % numExchange + exchange
+        while left_over >= numExchange:
+            new_bottles = left_over // numExchange
+            consumed += new_bottles
+            left_over = left_over % numExchange + new_bottles
+        return consumed`,
+      },
+    ],
+    details: {
+      overview:
+        "A curated collection of LeetCode problem solutions demonstrating proficiency in algorithmic thinking, data structures, and multiple programming languages. Problems range from classic interview questions like Two Sum to complex SQL/Pandas challenges like Trips and Users. Each solution is optimized for readability and efficiency.",
+      technologies: [
+        "Python",
+        "C++",
+        "Pandas",
+        "SQL",
+        "Data Structures",
+        "Algorithms",
+        "Regular Expressions",
+      ],
+      features: [
+        "Two Sum (Easy) - Classic array problem in C++",
+        "Find All Duplicates in Array (Medium) - Space-efficient C++ solution",
+        "Validate IP Address (Medium) - Regex-based Python validation",
+        "Trips and Users (Hard) - Complex Pandas data manipulation",
+        "Remove Duplicates from Sorted Array (Easy) - In-place C++ & Python",
+        "Water Bottles (Easy) - Mathematical Python solution",
+      ],
+      challenges:
+        "Balancing time and space complexity trade-offs, handling edge cases in input validation, and writing clean, maintainable code under time pressure. The Trips and Users problem required complex multi-table joins and aggregation logic.",
+      results:
+        "Successfully solved problems across all difficulty levels, demonstrating strong algorithmic foundations essential for technical interviews and real-world software engineering.",
+    },
+  },
+  {
     name: "Sea Hero Quest: Clinical Data Analysis",
     description:
       "Large-scale data analysis of 4+ million players' spatial navigation patterns to identify cognitive biomarkers for dementia research, processing 78,000+ complete game sessions.",
@@ -107,8 +301,6 @@ export const PROJECTS: Project[] = [
       "https://plus.unsplash.com/premium_photo-1681487767138-ddf2d67b35c1?w=800&h=600&fit=crop&q=80",
     id: "seaheroquest",
     category: "Data Science",
-    github:
-      "https://github.com/maxwellvaglica/SeaHeroQuest-Clinical-Experiment-Analysis",
     details: {
       overview:
         "Analysis of raw gameplay data from Sea Hero Quest, a citizen science mobile game designed to collect spatial navigation data for dementia research. This project processes data from over 4 million players to identify patterns in navigation performance that could serve as early biomarkers for Alzheimer's disease. The analysis includes cross-level correlations, age-based performance analysis, and predictive modeling.",

@@ -1,9 +1,10 @@
 "use client";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
 import { use, useState } from "react";
-import { PROJECTS } from "@/app/data";
+import { PROJECTS, EMAIL } from "@/app/data";
 import { Footer } from "@/app/footer";
+import { X, Lock, Mail, Github, ChevronDown, ChevronUp } from "lucide-react";
 
 export default function ProjectPage({
   params,
@@ -13,6 +14,21 @@ export default function ProjectPage({
   const { id } = use(params);
   const project = PROJECTS.find((p) => p.id === id);
   const [currentIterationIndex, setCurrentIterationIndex] = useState(0);
+  const [showCodeModal, setShowCodeModal] = useState(false);
+  const [expandedProblem, setExpandedProblem] = useState<number | null>(null);
+
+  const getDifficultyColor = (difficulty: string) => {
+    switch (difficulty) {
+      case "Easy":
+        return "bg-emerald-900/50 text-emerald-400 border-emerald-700";
+      case "Medium":
+        return "bg-amber-900/50 text-amber-400 border-amber-700";
+      case "Hard":
+        return "bg-red-900/50 text-red-400 border-red-700";
+      default:
+        return "bg-zinc-800 text-zinc-400 border-zinc-700";
+    }
+  };
 
   if (!project) {
     return (
@@ -54,7 +70,7 @@ export default function ProjectPage({
           </Link>
 
           <div className="space-y-6">
-            <div className="flex items-start justify-between">
+            <div className="flex items-start justify-between gap-4">
               <div>
                 <h1 className="text-5xl font-bold text-zinc-100">
                   {project.name}
@@ -63,22 +79,24 @@ export default function ProjectPage({
                   {project.description}
                 </p>
               </div>
-              {project.github && (
+              {project.github ? (
                 <a
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 rounded-lg bg-zinc-800 px-4 py-2 text-sm font-medium text-zinc-200 transition-all hover:bg-zinc-700"
+                  className="flex shrink-0 items-center gap-2 rounded-lg bg-zinc-800 px-4 py-2 text-sm font-medium text-zinc-200 transition-all hover:bg-zinc-700"
                 >
-                  <svg
-                    className="h-5 w-5"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                  </svg>
+                  <Github className="h-4 w-4" />
                   View on GitHub
                 </a>
+              ) : (
+                <button
+                  onClick={() => setShowCodeModal(true)}
+                  className="flex shrink-0 items-center gap-1.5 text-xs text-zinc-500 transition-colors hover:text-zinc-300"
+                >
+                  <Lock className="h-3 w-3" />
+                  Request Code
+                </button>
               )}
             </div>
 
@@ -100,6 +118,125 @@ export default function ProjectPage({
                   />
                 ) : null}
               </div>
+            )}
+
+            {/* LeetCode Problems Section */}
+            {project.problems && project.problems.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.25 }}
+                className="space-y-4"
+              >
+                <div className="flex items-center justify-between">
+                  <h2 className="text-2xl font-bold text-zinc-100">
+                    Problems Solved ({project.problems.length})
+                  </h2>
+                  <div className="flex gap-2 text-xs">
+                    <span className="rounded-full bg-emerald-900/50 px-2 py-1 text-emerald-400">
+                      Easy
+                    </span>
+                    <span className="rounded-full bg-amber-900/50 px-2 py-1 text-amber-400">
+                      Medium
+                    </span>
+                    <span className="rounded-full bg-red-900/50 px-2 py-1 text-red-400">
+                      Hard
+                    </span>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  {project.problems.map((problem, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 + index * 0.05 }}
+                      className="overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/50"
+                    >
+                      <button
+                        onClick={() =>
+                          setExpandedProblem(
+                            expandedProblem === index ? null : index,
+                          )
+                        }
+                        className="flex w-full items-center justify-between p-4 text-left transition-colors hover:bg-zinc-800/50"
+                      >
+                        <div className="flex items-center gap-3">
+                          <span
+                            className={`rounded-full border px-2.5 py-0.5 text-xs font-medium ${getDifficultyColor(problem.difficulty)}`}
+                          >
+                            {problem.difficulty}
+                          </span>
+                          <span className="font-semibold text-zinc-100">
+                            {problem.name}
+                          </span>
+                          <span className="text-sm text-zinc-500">
+                            {problem.language}
+                          </span>
+                        </div>
+                        {expandedProblem === index ? (
+                          <ChevronUp className="h-5 w-5 text-zinc-400" />
+                        ) : (
+                          <ChevronDown className="h-5 w-5 text-zinc-400" />
+                        )}
+                      </button>
+
+                      <AnimatePresence>
+                        {expandedProblem === index && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="overflow-hidden"
+                          >
+                            <div className="space-y-4 border-t border-zinc-800 p-4">
+                              <div>
+                                <h4 className="mb-1 text-sm font-semibold text-zinc-300">
+                                  Problem
+                                </h4>
+                                <p className="text-sm text-zinc-400">
+                                  {problem.description}
+                                </p>
+                              </div>
+
+                              <div>
+                                <h4 className="mb-1 text-sm font-semibold text-zinc-300">
+                                  Example
+                                </h4>
+                                <p className="font-mono text-sm text-zinc-500">
+                                  {problem.example}
+                                </p>
+                              </div>
+
+                              <div>
+                                <h4 className="mb-1 text-sm font-semibold text-zinc-300">
+                                  Approach
+                                </h4>
+                                <p className="text-sm text-zinc-400">
+                                  {problem.approach}
+                                </p>
+                              </div>
+
+                              <div>
+                                <h4 className="mb-2 text-sm font-semibold text-zinc-300">
+                                  Solution
+                                </h4>
+                                <pre className="overflow-x-auto rounded-lg bg-zinc-950 p-4 text-xs">
+                                  <code className="text-zinc-300">
+                                    {problem.code}
+                                  </code>
+                                </pre>
+                              </div>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
             )}
 
             {/* Training Iterations Carousel */}
@@ -339,6 +476,72 @@ export default function ProjectPage({
           <Footer />
         </div>
       </div>
+
+      {/* Code Request Modal */}
+      <AnimatePresence>
+        {showCodeModal && (
+          <>
+            <motion.div
+              className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowCodeModal(false)}
+            />
+            <motion.div
+              className="fixed inset-0 z-50 flex items-center justify-center p-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <motion.div
+                className="relative w-full max-w-md overflow-hidden rounded-2xl border border-zinc-700 bg-zinc-900 p-6 shadow-2xl"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button
+                  onClick={() => setShowCodeModal(false)}
+                  className="absolute top-4 right-4 rounded-full p-2 text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-zinc-100"
+                >
+                  <X size={20} />
+                </button>
+
+                <div className="flex flex-col items-center text-center">
+                  <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-amber-900/30">
+                    <Lock className="h-8 w-8 text-amber-400" />
+                  </div>
+
+                  <h3 className="mb-2 text-2xl font-bold text-zinc-100">
+                    Confidential Code
+                  </h3>
+
+                  <p className="mb-6 text-zinc-400">
+                    This project&apos;s source code is confidential and can only
+                    be shared with potential employers upon request. If
+                    you&apos;re interested in reviewing the code for this
+                    project, please contact me directly.
+                  </p>
+
+                  <a
+                    href={`mailto:${EMAIL}?subject=Code Access Request: ${project?.name}&body=Hi Maxwell,%0D%0A%0D%0AI'm interested in reviewing the code for your "${project?.name}" project.%0D%0A%0D%0A[Please include your name, company, and role]%0D%0A%0D%0AThank you!`}
+                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-600 px-6 py-3 font-medium text-white transition-all hover:bg-emerald-500"
+                  >
+                    <Mail className="h-5 w-5" />
+                    Contact: {EMAIL}
+                  </a>
+
+                  <p className="mt-4 text-sm text-zinc-500">
+                    I typically respond within 24-48 hours
+                  </p>
+                </div>
+              </motion.div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 }

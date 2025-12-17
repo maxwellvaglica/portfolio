@@ -152,9 +152,9 @@ const TIMELINE_ITEMS = [
 export default function Personal() {
   // Top 3 featured projects (most impressive/important)
   const FEATURED_PROJECTS = [
+    PROJECTS.find((p) => p.id === "leetcode"),
     PROJECTS.find((p) => p.id === "deeplabcut"),
     PROJECTS.find((p) => p.id === "seaheroquest"),
-    PROJECTS.find((p) => p.id === "strategy-evaluation"),
   ].filter(Boolean) as typeof PROJECTS;
 
   // Remaining projects
