@@ -5,7 +5,8 @@ import Link from "next/link";
 import { Timeline } from "@/components/ui/timeline";
 import { SectionSeparator } from "@/components/ui/section-separator";
 import { Footer } from "./footer";
-import { useState, useEffect } from "react";
+import { useRef } from "react";
+import { useRouter } from "next/navigation";
 
 const SKILLS = [
   "Python",
@@ -149,29 +150,51 @@ const TIMELINE_ITEMS = [
   },
 ];
 
+// iOS Apps data
+const IOS_APPS = [
+  {
+    id: "tabguard",
+    name: "TabGuard",
+    subtitle: "Popup & Tab Blocker",
+    description:
+      "Block annoying popups and unwanted new tabs in Safari. Features Smart Mode that allows your clicks while blocking script-triggered popups, site rules, and block history.",
+    icon: "/tabguard-icon.png",
+    screenshot: "/tabguard/main_page.png",
+    technologies: ["Swift", "SwiftUI", "Safari Extension", "WebKit"],
+    accentColor: "teal",
+    href: "/tabguard",
+    appStoreUrl: "https://apps.apple.com/us/app/tabguard/id6756740309",
+  },
+  {
+    id: "photoscan",
+    name: "PhotoScan",
+    subtitle: "QR & Barcode Reader",
+    description:
+      "Scan QR codes and barcodes from any image in your photo library — no live camera needed. Features batch scanning, 20+ barcode types, scan history, and data export.",
+    icon: "/photoscan-icon.png",
+    screenshot: "/single_barcode_scanned.PNG",
+    technologies: ["Swift", "SwiftUI", "Vision Framework", "Core Image"],
+    accentColor: "indigo",
+    href: "/photoscan",
+    appStoreUrl:
+      "https://apps.apple.com/us/app/photoscan-qr-barcode-reader/id6756690991",
+  },
+];
+
 export default function Personal() {
-  // Top 3 featured projects (most impressive/important)
-  const FEATURED_PROJECTS = [
-    PROJECTS.find((p) => p.id === "leetcode"),
-    PROJECTS.find((p) => p.id === "deeplabcut"),
-    PROJECTS.find((p) => p.id === "seaheroquest"),
-  ].filter(Boolean) as typeof PROJECTS;
+  // Featured projects first (most impressive), then other projects
+  const FEATURED_IDS = ["leetcode", "deeplabcut", "seaheroquest"];
+  const FEATURED_PROJECTS = FEATURED_IDS.map((id) =>
+    PROJECTS.find((p) => p.id === id),
+  ).filter(Boolean) as typeof PROJECTS;
 
-  // Remaining projects
-  const OTHER_PROJECTS = PROJECTS.filter(
-    (p) => !FEATURED_PROJECTS.some((fp) => fp.id === p.id),
-  );
+  const OTHER_PROJECTS = PROJECTS.filter((p) => !FEATURED_IDS.includes(p.id));
 
-  const [currentFeaturedIndex, setCurrentFeaturedIndex] = useState(0);
+  // Combine: featured first, then others
+  const ALL_PROJECTS_ORDERED = [...FEATURED_PROJECTS, ...OTHER_PROJECTS];
 
-  // Auto-rotate carousel (8 seconds per slide)
-  useEffect(() => {
-    if (FEATURED_PROJECTS.length === 0) return;
-    const interval = setInterval(() => {
-      setCurrentFeaturedIndex((prev) => (prev + 1) % FEATURED_PROJECTS.length);
-    }, 8000);
-    return () => clearInterval(interval);
-  }, [FEATURED_PROJECTS.length]);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   return (
     <>
@@ -214,246 +237,7 @@ export default function Personal() {
         </motion.div>
       </div>
 
-      <div
-        className="panel"
-        style={{ paddingTop: "2rem", paddingBottom: "2rem" }}
-      >
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.1 }}
-          className="mx-auto w-full max-w-7xl"
-        >
-          <h3 className="mb-8 text-center text-4xl font-bold text-zinc-100">
-            Featured Projects
-          </h3>
-
-          {/* Featured Projects Carousel */}
-          {FEATURED_PROJECTS.length > 0 && (
-            <div className="mb-12">
-              <div className="relative h-[600px] w-full overflow-hidden rounded-2xl">
-                {FEATURED_PROJECTS.map((project, index) => (
-                  <motion.div
-                    key={project.id}
-                    initial={false}
-                    animate={{
-                      opacity: index === currentFeaturedIndex ? 1 : 0,
-                      x: `${(index - currentFeaturedIndex) * 100}%`,
-                    }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
-                    className="absolute inset-0"
-                  >
-                    <Link
-                      href={`/projects/${project.id}`}
-                      className="group relative flex h-full w-full flex-col overflow-hidden rounded-2xl border-2 border-zinc-700 bg-zinc-900 shadow-2xl"
-                    >
-                      {project.image ? (
-                        <div className="relative h-2/3 w-full overflow-hidden bg-zinc-800">
-                          <img
-                            src={project.image}
-                            alt={project.name}
-                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/95 via-zinc-900/50 to-transparent" />
-                        </div>
-                      ) : project.video ? (
-                        <div className="relative h-2/3 w-full overflow-hidden bg-zinc-800">
-                          <video
-                            src={project.video}
-                            autoPlay
-                            loop
-                            muted
-                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/95 via-zinc-900/50 to-transparent" />
-                        </div>
-                      ) : (
-                        <div className="relative h-2/3 w-full overflow-hidden bg-gradient-to-br from-zinc-800 to-zinc-900">
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="text-8xl text-zinc-500">📁</div>
-                          </div>
-                        </div>
-                      )}
-                      <div className="relative z-10 flex h-1/3 flex-col justify-center bg-zinc-900 px-8 py-6">
-                        <h4 className="mb-2 text-3xl font-bold text-white">
-                          {project.name}
-                        </h4>
-                        <p className="mb-4 line-clamp-2 text-base leading-relaxed text-zinc-200">
-                          {project.description}
-                        </p>
-                        {project.details && project.details.technologies && (
-                          <div className="flex flex-wrap gap-2">
-                            {project.details.technologies
-                              .slice(0, 4)
-                              .map((tech) => (
-                                <span
-                                  key={tech}
-                                  className="rounded-full bg-zinc-800 px-3 py-1.5 text-xs font-medium text-zinc-200"
-                                >
-                                  {tech}
-                                </span>
-                              ))}
-                          </div>
-                        )}
-                      </div>
-                    </Link>
-                  </motion.div>
-                ))}
-
-                {/* Carousel Navigation Dots */}
-                <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 gap-2">
-                  {FEATURED_PROJECTS.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentFeaturedIndex(index)}
-                      className={`h-2 rounded-full transition-all ${
-                        index === currentFeaturedIndex
-                          ? "w-8 bg-white"
-                          : "w-2 bg-white/50 hover:bg-white/75"
-                      }`}
-                      aria-label={`Go to slide ${index + 1}`}
-                    />
-                  ))}
-                </div>
-
-                {/* Navigation Arrows */}
-                {FEATURED_PROJECTS.length > 1 && (
-                  <>
-                    <button
-                      onClick={() =>
-                        setCurrentFeaturedIndex(
-                          (prev) =>
-                            (prev - 1 + FEATURED_PROJECTS.length) %
-                            FEATURED_PROJECTS.length,
-                        )
-                      }
-                      className="absolute top-1/2 left-4 z-20 -translate-y-1/2 rounded-full bg-zinc-800/80 p-3 text-white transition-all hover:bg-zinc-700"
-                      aria-label="Previous project"
-                    >
-                      <svg
-                        className="h-6 w-6"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M15 19l-7-7 7-7"
-                        />
-                      </svg>
-                    </button>
-                    <button
-                      onClick={() =>
-                        setCurrentFeaturedIndex(
-                          (prev) => (prev + 1) % FEATURED_PROJECTS.length,
-                        )
-                      }
-                      className="absolute top-1/2 right-4 z-20 -translate-y-1/2 rounded-full bg-zinc-800/80 p-3 text-white transition-all hover:bg-zinc-700"
-                      aria-label="Next project"
-                    >
-                      <svg
-                        className="h-6 w-6"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
-                    </button>
-                  </>
-                )}
-              </div>
-            </div>
-          )}
-
-          {/* Other Projects Scrollable Grid */}
-          {OTHER_PROJECTS.length > 0 && (
-            <div>
-              <h4 className="mb-4 text-2xl font-bold text-zinc-100">
-                Other Projects
-              </h4>
-              <div className="overflow-x-auto pb-4">
-                <div className="flex gap-4" style={{ minWidth: "max-content" }}>
-                  {OTHER_PROJECTS.map((project) => (
-                    <Link
-                      key={project.id}
-                      href={`/projects/${project.id}`}
-                      className="group relative flex min-w-[280px] flex-col overflow-hidden rounded-xl border border-zinc-700 bg-zinc-900 shadow-lg transition-all duration-300 hover:border-zinc-600 hover:shadow-xl"
-                    >
-                      {project.image ? (
-                        <div className="relative aspect-video w-full overflow-hidden bg-zinc-800">
-                          <img
-                            src={project.image}
-                            alt={project.name}
-                            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
-                            loading="lazy"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/80 via-zinc-900/20 to-transparent" />
-                        </div>
-                      ) : project.video ? (
-                        <div className="relative aspect-video w-full overflow-hidden bg-zinc-800">
-                          <video
-                            src={project.video}
-                            autoPlay
-                            loop
-                            muted
-                            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/80 via-zinc-900/20 to-transparent" />
-                        </div>
-                      ) : (
-                        <div className="relative aspect-video w-full overflow-hidden bg-gradient-to-br from-zinc-800 to-zinc-900">
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="text-4xl text-zinc-500">📁</div>
-                          </div>
-                        </div>
-                      )}
-                      <div className="p-4">
-                        <h5 className="mb-2 text-lg font-bold text-white">
-                          {project.name}
-                        </h5>
-                        <p className="line-clamp-2 text-sm leading-relaxed text-zinc-300">
-                          {project.description}
-                        </p>
-                        {project.details && project.details.technologies && (
-                          <div className="mt-3 flex flex-wrap gap-1.5">
-                            {project.details.technologies
-                              .slice(0, 2)
-                              .map((tech) => (
-                                <span
-                                  key={tech}
-                                  className="rounded-full bg-zinc-800 px-2 py-1 text-xs text-zinc-300"
-                                >
-                                  {tech}
-                                </span>
-                              ))}
-                            {project.details.technologies.length > 2 && (
-                              <span className="rounded-full bg-zinc-800 px-2 py-1 text-xs text-zinc-400">
-                                +{project.details.technologies.length - 2}
-                              </span>
-                            )}
-                          </div>
-                        )}
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-        </motion.div>
-      </div>
-
-      <SectionSeparator />
-
-      {/* iOS App Showcase */}
+      {/* iOS Apps Section - Now BEFORE projects */}
       <div
         className="panel"
         style={{ paddingTop: "3rem", paddingBottom: "3rem" }}
@@ -465,86 +249,236 @@ export default function Personal() {
           className="mx-auto w-full max-w-6xl"
         >
           <h3 className="mb-4 text-center text-4xl font-bold text-zinc-100">
-            iOS App
+            iOS Apps
           </h3>
           <p className="mx-auto mb-10 max-w-2xl text-center text-zinc-400">
-            Native iOS application built with Swift and SwiftUI, available on
-            the App Store
+            Native iOS applications built with Swift and SwiftUI
           </p>
 
-          <Link
-            href="/photoscan"
-            className="group relative mx-auto block max-w-4xl overflow-hidden rounded-3xl border-2 border-indigo-900/50 bg-gradient-to-br from-indigo-950/50 via-zinc-900 to-purple-950/50 transition-all hover:border-indigo-700/70 hover:shadow-2xl hover:shadow-indigo-500/20"
-          >
-            <div className="flex flex-col md:flex-row">
-              {/* App Info */}
-              <div className="flex flex-1 flex-col justify-center p-8 md:p-10">
-                <div className="mb-4 flex items-center gap-4">
-                  <img
-                    src="/photoscan-icon.png"
-                    alt="PhotoScan App Icon"
-                    className="h-16 w-16 rounded-2xl shadow-lg shadow-indigo-500/30"
-                  />
-                  <div>
-                    <h4 className="text-2xl font-bold text-white md:text-3xl">
-                      PhotoScan
-                    </h4>
-                    <p className="text-indigo-400">QR & Barcode Reader</p>
-                  </div>
-                </div>
+          <div className="grid gap-6 md:grid-cols-2">
+            {IOS_APPS.map((app) => (
+              <div
+                key={app.id}
+                onClick={() => router.push(app.href)}
+                className={`group relative cursor-pointer overflow-hidden rounded-3xl border-2 transition-all hover:shadow-2xl ${
+                  app.accentColor === "teal"
+                    ? "border-teal-900/50 bg-gradient-to-br from-teal-950/50 via-zinc-900 to-cyan-950/50 hover:border-teal-700/70 hover:shadow-teal-500/20"
+                    : "border-indigo-900/50 bg-gradient-to-br from-indigo-950/50 via-zinc-900 to-purple-950/50 hover:border-indigo-700/70 hover:shadow-indigo-500/20"
+                }`}
+              >
+                <div className="flex flex-col">
+                  {/* App Info */}
+                  <div className="flex flex-1 flex-col justify-center p-6 md:p-8">
+                    <div className="mb-4 flex items-center gap-4">
+                      <img
+                        src={app.icon}
+                        alt={`${app.name} App Icon`}
+                        className={`h-14 w-14 rounded-2xl shadow-lg ${
+                          app.accentColor === "teal"
+                            ? "shadow-teal-500/30"
+                            : "shadow-indigo-500/30"
+                        }`}
+                      />
+                      <div>
+                        <h4 className="text-xl font-bold text-white md:text-2xl">
+                          {app.name}
+                        </h4>
+                        <p
+                          className={
+                            app.accentColor === "teal"
+                              ? "text-teal-400"
+                              : "text-indigo-400"
+                          }
+                        >
+                          {app.subtitle}
+                        </p>
+                      </div>
+                    </div>
 
-                <p className="mb-6 leading-relaxed text-zinc-300">
-                  Scan QR codes and barcodes from any image in your photo
-                  library — no live camera needed. Features batch scanning, 20+
-                  barcode types, scan history, and data export.
-                </p>
+                    <p className="mb-4 text-sm leading-relaxed text-zinc-300">
+                      {app.description}
+                    </p>
 
-                <div className="mb-6 flex flex-wrap gap-2">
-                  {["Swift", "SwiftUI", "Vision Framework", "Core Image"].map(
-                    (tech) => (
-                      <span
-                        key={tech}
-                        className="rounded-full bg-indigo-900/50 px-3 py-1 text-sm text-indigo-300"
+                    <div className="mb-4 flex flex-wrap gap-2">
+                      {app.technologies.map((tech) => (
+                        <span
+                          key={tech}
+                          className={`rounded-full px-2.5 py-1 text-xs ${
+                            app.accentColor === "teal"
+                              ? "bg-teal-900/50 text-teal-300"
+                              : "bg-indigo-900/50 text-indigo-300"
+                          }`}
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="flex flex-wrap items-center gap-3">
+                      <a
+                        href={app.appStoreUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="inline-flex items-center gap-2 rounded-xl bg-zinc-800 px-3 py-1.5 text-sm font-medium text-zinc-200 transition-all hover:bg-zinc-700"
                       >
-                        {tech}
+                        <svg
+                          className="h-4 w-4"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+                        </svg>
+                        App Store
+                      </a>
+                      <span className="rounded-full bg-emerald-900/50 px-2.5 py-1 text-xs font-medium text-emerald-400">
+                        New
                       </span>
-                    ),
-                  )}
-                </div>
-
-                <div className="flex flex-wrap items-center gap-4">
-                  <span className="inline-flex items-center gap-2 rounded-xl bg-zinc-800 px-4 py-2 font-medium text-zinc-200 transition-all group-hover:bg-zinc-700">
-                    <svg
-                      className="h-5 w-5"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-                    </svg>
-                    App Store
-                  </span>
-                  <span className="rounded-full bg-amber-900/50 px-3 py-1 text-sm font-medium text-amber-400">
-                    Coming Soon
-                  </span>
-                </div>
-              </div>
-
-              {/* Phone Mockup */}
-              <div className="flex items-center justify-center p-6 md:p-8">
-                <div className="relative w-[200px] rounded-[2rem] border-4 border-zinc-700 bg-zinc-900 p-1.5 shadow-xl md:w-[220px]">
-                  <div className="overflow-hidden rounded-[1.5rem] bg-black">
-                    <img
-                      src="/single_barcode_scanned.PNG"
-                      alt="PhotoScan App Screenshot"
-                      className="h-auto w-full"
-                    />
+                    </div>
                   </div>
-                  {/* Dynamic Island */}
-                  <div className="absolute top-4 left-1/2 h-5 w-16 -translate-x-1/2 rounded-full bg-black"></div>
                 </div>
               </div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+
+      <SectionSeparator />
+
+      {/* Personal/School Project Spotlight - Single scrollable carousel */}
+      <div
+        className="panel"
+        style={{ paddingTop: "2rem", paddingBottom: "2rem" }}
+      >
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.1 }}
+          className="mx-auto w-full max-w-7xl"
+        >
+          <h3 className="mb-4 text-center text-4xl font-bold text-zinc-100">
+            Personal/School Project Spotlight
+          </h3>
+          <p className="mx-auto mb-8 max-w-2xl text-center text-zinc-400">
+            A collection of projects from my graduate studies at Georgia Tech
+            and personal research work
+          </p>
+
+          {/* Scrollable Project Carousel */}
+          <div
+            ref={scrollContainerRef}
+            className="scrollbar-thin scrollbar-track-zinc-800 scrollbar-thumb-zinc-600 -mx-4 overflow-x-auto px-4 pb-4"
+            style={{
+              scrollSnapType: "x mandatory",
+              WebkitOverflowScrolling: "touch",
+            }}
+          >
+            <div className="flex gap-6" style={{ minWidth: "max-content" }}>
+              {ALL_PROJECTS_ORDERED.map((project, index) => (
+                <Link
+                  key={project.id}
+                  href={`/projects/${project.id}`}
+                  className="group relative flex w-[350px] flex-shrink-0 flex-col overflow-hidden rounded-2xl border border-zinc-700 bg-zinc-900 shadow-lg transition-all duration-300 hover:border-zinc-500 hover:shadow-xl md:w-[400px]"
+                  style={{ scrollSnapAlign: "start" }}
+                >
+                  {/* Featured badge for first 3 */}
+                  {index < 3 && (
+                    <div className="absolute top-3 left-3 z-10 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 px-3 py-1 text-xs font-bold text-white shadow-lg">
+                      Featured
+                    </div>
+                  )}
+
+                  {project.image ? (
+                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-zinc-800">
+                      <img
+                        src={project.image}
+                        alt={project.name}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/90 via-zinc-900/30 to-transparent" />
+                    </div>
+                  ) : project.video ? (
+                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-zinc-800">
+                      <video
+                        src={project.video}
+                        autoPlay
+                        loop
+                        muted
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/90 via-zinc-900/30 to-transparent" />
+                    </div>
+                  ) : (
+                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-gradient-to-br from-zinc-800 to-zinc-900">
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-6xl text-zinc-600">📁</div>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="flex flex-1 flex-col p-5">
+                    <h4 className="mb-2 text-xl font-bold text-white">
+                      {project.name}
+                    </h4>
+                    <p className="mb-4 line-clamp-2 flex-1 text-sm leading-relaxed text-zinc-300">
+                      {project.description}
+                    </p>
+                    {project.details && project.details.technologies && (
+                      <div className="flex flex-wrap gap-1.5">
+                        {project.details.technologies
+                          .slice(0, 3)
+                          .map((tech) => (
+                            <span
+                              key={tech}
+                              className="rounded-full bg-zinc-800 px-2.5 py-1 text-xs text-zinc-300"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        {project.details.technologies.length > 3 && (
+                          <span className="rounded-full bg-zinc-800 px-2.5 py-1 text-xs text-zinc-400">
+                            +{project.details.technologies.length - 3}
+                          </span>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </Link>
+              ))}
             </div>
-          </Link>
+          </div>
+
+          {/* Scroll hint */}
+          <div className="mt-4 flex items-center justify-center gap-2 text-sm text-zinc-500">
+            <svg
+              className="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M7 16l-4-4m0 0l4-4m-4 4h18"
+              />
+            </svg>
+            <span>Scroll to explore all projects</span>
+            <svg
+              className="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
+            </svg>
+          </div>
         </motion.div>
       </div>
 
