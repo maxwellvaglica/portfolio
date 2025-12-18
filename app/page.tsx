@@ -453,6 +453,103 @@ export default function Personal() {
 
       <SectionSeparator />
 
+      {/* iOS App Showcase */}
+      <div
+        className="panel"
+        style={{ paddingTop: "3rem", paddingBottom: "3rem" }}
+      >
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          className="mx-auto w-full max-w-6xl"
+        >
+          <h3 className="mb-4 text-center text-4xl font-bold text-zinc-100">
+            iOS App
+          </h3>
+          <p className="mx-auto mb-10 max-w-2xl text-center text-zinc-400">
+            Native iOS application built with Swift and SwiftUI, available on
+            the App Store
+          </p>
+
+          <Link
+            href="/photoscan"
+            className="group relative mx-auto block max-w-4xl overflow-hidden rounded-3xl border-2 border-indigo-900/50 bg-gradient-to-br from-indigo-950/50 via-zinc-900 to-purple-950/50 transition-all hover:border-indigo-700/70 hover:shadow-2xl hover:shadow-indigo-500/20"
+          >
+            <div className="flex flex-col md:flex-row">
+              {/* App Info */}
+              <div className="flex flex-1 flex-col justify-center p-8 md:p-10">
+                <div className="mb-4 flex items-center gap-4">
+                  <img
+                    src="/photoscan-icon.png"
+                    alt="PhotoScan App Icon"
+                    className="h-16 w-16 rounded-2xl shadow-lg shadow-indigo-500/30"
+                  />
+                  <div>
+                    <h4 className="text-2xl font-bold text-white md:text-3xl">
+                      PhotoScan
+                    </h4>
+                    <p className="text-indigo-400">QR & Barcode Reader</p>
+                  </div>
+                </div>
+
+                <p className="mb-6 leading-relaxed text-zinc-300">
+                  Scan QR codes and barcodes from any image in your photo
+                  library — no live camera needed. Features batch scanning, 20+
+                  barcode types, scan history, and data export.
+                </p>
+
+                <div className="mb-6 flex flex-wrap gap-2">
+                  {["Swift", "SwiftUI", "Vision Framework", "Core Image"].map(
+                    (tech) => (
+                      <span
+                        key={tech}
+                        className="rounded-full bg-indigo-900/50 px-3 py-1 text-sm text-indigo-300"
+                      >
+                        {tech}
+                      </span>
+                    ),
+                  )}
+                </div>
+
+                <div className="flex flex-wrap items-center gap-4">
+                  <span className="inline-flex items-center gap-2 rounded-xl bg-zinc-800 px-4 py-2 font-medium text-zinc-200 transition-all group-hover:bg-zinc-700">
+                    <svg
+                      className="h-5 w-5"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+                    </svg>
+                    App Store
+                  </span>
+                  <span className="rounded-full bg-amber-900/50 px-3 py-1 text-sm font-medium text-amber-400">
+                    Coming Soon
+                  </span>
+                </div>
+              </div>
+
+              {/* Phone Mockup */}
+              <div className="flex items-center justify-center p-6 md:p-8">
+                <div className="relative w-[200px] rounded-[2rem] border-4 border-zinc-700 bg-zinc-900 p-1.5 shadow-xl md:w-[220px]">
+                  <div className="overflow-hidden rounded-[1.5rem] bg-black">
+                    <img
+                      src="/single_barcode_scanned.PNG"
+                      alt="PhotoScan App Screenshot"
+                      className="h-auto w-full"
+                    />
+                  </div>
+                  {/* Dynamic Island */}
+                  <div className="absolute top-4 left-1/2 h-5 w-16 -translate-x-1/2 rounded-full bg-black"></div>
+                </div>
+              </div>
+            </div>
+          </Link>
+        </motion.div>
+      </div>
+
+      <SectionSeparator />
+
       <div className="panel">
         <motion.div
           initial={{ opacity: 0 }}

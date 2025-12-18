@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../project/SeaHeroQuest-Clinical-Experiment-Analysis"
+		},
+		{
+			"path": "../../../project/newman-memory-deeplabcut"
+		}
+	],
+	"settings": {}
+}
