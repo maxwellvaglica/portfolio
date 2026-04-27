@@ -11,18 +11,19 @@ import { useRouter } from "next/navigation";
 const SKILLS = [
   "Python",
   "SQL & BigQuery",
-  "Cloud Computing (GCP)",
+  "Cloud Computing (GCP, Azure)",
   "FastAPI & REST APIs",
-  "Machine Learning",
-  "PyTorch & Scikit-learn",
+  "Machine Learning & PyTorch",
+  "LLMs & Agentic AI",
+  "RAG & LangChain",
   "Data Pipelines",
   "CI/CD & DevOps",
 ];
 
 const HIGHLIGHTS = [
+  { value: "M.S.", label: "Computer Science" },
   { value: "3.9", label: "GPA (MS)" },
   { value: "4+", label: "Years Exp" },
-  { value: "12", label: "Projects" },
   { value: "100+", label: "Users Served" },
 ];
 
@@ -32,15 +33,15 @@ const TIMELINE_ITEMS = [
     title: "Georgia Institute of Technology",
     subtitle: "Master of Science in Computer Science",
     start: "2024",
-    end: "April 2026",
+    end: "2026",
     type: "education" as const,
     description:
-      "Pursuing a Master's degree in Computer Science with a specialization in Machine Learning. Maintaining a 3.9 GPA while working full-time as a Computational Biologist. Coursework includes advanced machine learning, computer networks, cybersecurity, and quantitative finance.",
+      "Earned a Master's degree in Computer Science with a specialization in Computing Systems. Graduated with a 3.9 GPA while working full-time as a Computational Biologist. Coursework included advanced machine learning, computer networks, cybersecurity, and quantitative finance.",
     highlights: [
-      "Machine Learning specialization with 3.9 GPA",
-      "Completed 8 graduate-level courses while working full-time",
-      "Projects spanning ML, networking, security, and systems",
-      "Expected graduation: April 2026",
+      "Graduated with Computing Systems specialization, 3.9 GPA",
+      "Completed graduate-level coursework while working full-time",
+      "Projects spanning ML, deep learning, networking, security, and systems",
+      "Graduated April 2026",
     ],
     skills: [
       "Machine Learning",
@@ -206,13 +207,11 @@ export default function Personal() {
         >
           <h1 className="text-6xl font-bold text-zinc-100">Maxwell Vaglica</h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-zinc-400">
-            <span className="text-zinc-200">
-              Data Engineer & Software Developer
-            </span>{" "}
-            with expertise in building scalable data pipelines, cloud-based
-            applications, and machine learning systems. Currently pursuing an MS
-            in Computer Science at Georgia Tech with a focus on Machine
-            Learning.
+            <span className="text-zinc-200">Data & AI/ML Engineer</span> with
+            expertise in building scalable data pipelines, cloud-based
+            applications, and production machine learning and agentic AI
+            systems. Holds an M.S. in Computer Science from Georgia Tech with a
+            specialization in Computing Systems.
           </p>
           <div className="mx-auto mt-6 flex max-w-lg justify-center gap-8">
             {HIGHLIGHTS.map((item) => (
@@ -496,9 +495,9 @@ export default function Personal() {
           </h3>
           <p className="mx-auto mb-12 max-w-2xl text-center text-zinc-400">
             4+ years of professional experience building production data
-            pipelines, cloud applications, and automation systems serving 100+
-            users across multiple laboratories. Strong academic foundation in
-            Computer Science and Machine Learning.
+            pipelines, cloud applications, and AI/ML systems serving 100+ users
+            across multiple laboratories. Backed by an M.S. in Computer Science
+            from Georgia Tech with a Computing Systems specialization.
           </p>
           <Timeline items={TIMELINE_ITEMS} />
         </motion.div>

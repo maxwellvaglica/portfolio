@@ -2,9 +2,11 @@
 import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
 import { use, useState } from "react";
-import { PROJECTS, EMAIL } from "@/app/data";
+import { PROJECTS } from "@/app/data";
 import { Footer } from "@/app/footer";
-import { X, Lock, Mail, Github, ChevronDown, ChevronUp } from "lucide-react";
+import { Github, ChevronDown, ChevronUp } from "lucide-react";
+
+const GITHUB_REPOS_URL = "https://github.com/maxwellvaglica?tab=repositories";
 
 export default function ProjectPage({
   params,
@@ -14,7 +16,6 @@ export default function ProjectPage({
   const { id } = use(params);
   const project = PROJECTS.find((p) => p.id === id);
   const [currentIterationIndex, setCurrentIterationIndex] = useState(0);
-  const [showCodeModal, setShowCodeModal] = useState(false);
   const [expandedProblem, setExpandedProblem] = useState<number | null>(null);
 
   const getDifficultyColor = (difficulty: string) => {
@@ -79,25 +80,15 @@ export default function ProjectPage({
                   {project.description}
                 </p>
               </div>
-              {project.github ? (
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex shrink-0 items-center gap-2 rounded-lg bg-zinc-800 px-4 py-2 text-sm font-medium text-zinc-200 transition-all hover:bg-zinc-700"
-                >
-                  <Github className="h-4 w-4" />
-                  View on GitHub
-                </a>
-              ) : (
-                <button
-                  onClick={() => setShowCodeModal(true)}
-                  className="flex shrink-0 items-center gap-1.5 text-xs text-zinc-500 transition-colors hover:text-zinc-300"
-                >
-                  <Lock className="h-3 w-3" />
-                  Request Code
-                </button>
-              )}
+              <a
+                href={project.github || GITHUB_REPOS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex shrink-0 items-center gap-2 rounded-lg bg-zinc-800 px-4 py-2 text-sm font-medium text-zinc-200 transition-all hover:bg-zinc-700"
+              >
+                <Github className="h-4 w-4" />
+                View on GitHub
+              </a>
             </div>
 
             {(project.image || project.video) && (
@@ -476,72 +467,6 @@ export default function ProjectPage({
           <Footer />
         </div>
       </div>
-
-      {/* Code Request Modal */}
-      <AnimatePresence>
-        {showCodeModal && (
-          <>
-            <motion.div
-              className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setShowCodeModal(false)}
-            />
-            <motion.div
-              className="fixed inset-0 z-50 flex items-center justify-center p-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <motion.div
-                className="relative w-full max-w-md overflow-hidden rounded-2xl border border-zinc-700 bg-zinc-900 p-6 shadow-2xl"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                onClick={(e) => e.stopPropagation()}
-              >
-                <button
-                  onClick={() => setShowCodeModal(false)}
-                  className="absolute top-4 right-4 rounded-full p-2 text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-zinc-100"
-                >
-                  <X size={20} />
-                </button>
-
-                <div className="flex flex-col items-center text-center">
-                  <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-amber-900/30">
-                    <Lock className="h-8 w-8 text-amber-400" />
-                  </div>
-
-                  <h3 className="mb-2 text-2xl font-bold text-zinc-100">
-                    Confidential Code
-                  </h3>
-
-                  <p className="mb-6 text-zinc-400">
-                    This project&apos;s source code is confidential and can only
-                    be shared with potential employers upon request. If
-                    you&apos;re interested in reviewing the code for this
-                    project, please contact me directly.
-                  </p>
-
-                  <a
-                    href={`mailto:${EMAIL}?subject=Code Access Request: ${project?.name}&body=Hi Maxwell,%0D%0A%0D%0AI'm interested in reviewing the code for your "${project?.name}" project.%0D%0A%0D%0A[Please include your name, company, and role]%0D%0A%0D%0AThank you!`}
-                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-600 px-6 py-3 font-medium text-white transition-all hover:bg-emerald-500"
-                  >
-                    <Mail className="h-5 w-5" />
-                    Contact: {EMAIL}
-                  </a>
-
-                  <p className="mt-4 text-sm text-zinc-500">
-                    I typically respond within 24-48 hours
-                  </p>
-                </div>
-              </motion.div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
     </>
   );
 }

@@ -16,11 +16,11 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   title: {
-    default: "Maxwell Vaglica - Aspiring Engineer",
+    default: "Maxwell Vaglica - Data & AI/ML Engineer",
     template: "%s | Maxwell Vaglica",
   },
   description:
-    "Data Engineer & Software Developer with expertise in Python, cloud computing, machine learning, and data pipelines.",
+    "Data & AI/ML Engineer with an M.S. in Computer Science from Georgia Tech. Expertise in Python, cloud computing, machine learning, agentic AI, and production data pipelines.",
   icons: {
     icon: "/favicon.svg",
   },

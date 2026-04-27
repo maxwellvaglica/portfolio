@@ -8,7 +8,7 @@ export function Header() {
         <Link href="/" className="font-bold text-zinc-100">
           Maxwell Vaglica
         </Link>
-        <p className="text-zinc-400">Data Engineer & Software Engineer</p>
+        <p className="text-zinc-400">Data & AI/ML Engineer</p>
       </div>
     </header>
   );
