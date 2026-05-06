@@ -22,7 +22,6 @@ const SKILLS = [
 
 const HIGHLIGHTS = [
   { value: "M.S.", label: "Computer Science" },
-  { value: "3.9", label: "GPA (MS)" },
   { value: "4+", label: "Years Exp" },
   { value: "100+", label: "Users Served" },
 ];
@@ -36,9 +35,9 @@ const TIMELINE_ITEMS = [
     end: "2026",
     type: "education" as const,
     description:
-      "Earned a Master's degree in Computer Science with a specialization in Computing Systems. Graduated with a 3.9 GPA while working full-time as a Computational Biologist. Coursework included advanced machine learning, computer networks, cybersecurity, and quantitative finance.",
+      "Earned a Master's degree in Computer Science with a specialization in Computing Systems while working full-time as a Computational Biologist. Coursework included advanced machine learning, computer networks, cybersecurity, and quantitative finance.",
     highlights: [
-      "Graduated with Computing Systems specialization, 3.9 GPA",
+      "Graduated with Computing Systems specialization",
       "Completed graduate-level coursework while working full-time",
       "Projects spanning ML, deep learning, networking, security, and systems",
       "Graduated April 2026",

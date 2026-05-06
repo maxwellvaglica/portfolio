@@ -5,7 +5,7 @@ export function Footer() {
     <div className="mt-8 border-t border-zinc-800 pt-8">
       <div className="flex flex-col items-center gap-4">
         <a
-          href="/Maxwell_Vaglica_Resume.pdf"
+          href="/maxwell_vaglica_resume_may.pdf"
           download
           className="inline-flex items-center gap-2 rounded-lg bg-zinc-800 px-6 py-3 font-medium text-zinc-100 transition-all hover:bg-zinc-700 hover:shadow-lg"
         >
