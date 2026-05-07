@@ -22,11 +22,25 @@ body {
 
 .panel {
   width: 100%;
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 4rem 2rem;
+  padding: 2rem 2rem;
+}
+
+@media (min-width: 768px) {
+  .panel {
+    padding: 2.5rem 2rem;
+  }
+}
+
+.panel-hero {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem 3rem;
+  min-height: 70vh;
 }
 
 .card {

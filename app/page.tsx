@@ -7,6 +7,7 @@ import { SectionSeparator } from "@/components/ui/section-separator";
 import { Footer } from "./footer";
 import { useRef } from "react";
 import { useRouter } from "next/navigation";
+import { ContactForm } from "@/components/contact-form";
 
 const SKILLS = [
   "Python",
@@ -198,35 +199,50 @@ export default function Personal() {
 
   return (
     <>
-      <div className="panel">
+      <div className="panel-hero">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { delay: 0.2 } }}
           className="text-center"
         >
-          <h1 className="text-6xl font-bold text-zinc-100">Maxwell Vaglica</h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-zinc-400">
+          <Link
+            href="/opportunities"
+            className="mx-auto inline-flex items-center gap-2 rounded-full border border-emerald-700/50 bg-emerald-950/30 px-4 py-1 text-xs text-emerald-300 transition-colors hover:border-emerald-600 hover:bg-emerald-950/50 sm:py-1.5 sm:text-sm"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+            </span>
+            Exploring ML, Data, Backend & Solutions Architecture · open to
+            relocation
+          </Link>
+          <h1 className="mt-4 text-5xl font-bold text-zinc-100 md:text-6xl">
+            Maxwell Vaglica
+          </h1>
+          <p className="mx-auto mt-3 max-w-2xl text-base leading-relaxed text-zinc-400 md:text-lg">
             <span className="text-zinc-200">Data & AI/ML Engineer</span> with
             expertise in building scalable data pipelines, cloud-based
             applications, and production machine learning and agentic AI
-            systems. Holds an M.S. in Computer Science from Georgia Tech with a
-            specialization in Computing Systems.
+            systems. M.S. in Computer Science from Georgia Tech, Computing
+            Systems specialization.
           </p>
-          <div className="mx-auto mt-6 flex max-w-lg justify-center gap-8">
+          <div className="mx-auto mt-5 flex max-w-lg justify-center gap-6 md:gap-8">
             {HIGHLIGHTS.map((item) => (
               <div key={item.label} className="text-center">
-                <div className="text-3xl font-bold text-zinc-100">
+                <div className="text-2xl font-bold text-zinc-100 md:text-3xl">
                   {item.value}
                 </div>
-                <div className="text-sm text-zinc-500">{item.label}</div>
+                <div className="text-xs text-zinc-500 md:text-sm">
+                  {item.label}
+                </div>
               </div>
             ))}
           </div>
-          <div className="mt-8 flex flex-wrap justify-center gap-2">
+          <div className="mx-auto mt-5 flex max-w-2xl flex-wrap justify-center gap-1.5">
             {SKILLS.map((skill) => (
               <span
                 key={skill}
-                className="rounded-full bg-zinc-800 px-3 py-1 text-sm text-zinc-300"
+                className="rounded-full bg-zinc-800 px-2.5 py-0.5 text-xs text-zinc-300 md:text-sm"
               >
                 {skill}
               </span>
@@ -236,20 +252,17 @@ export default function Personal() {
       </div>
 
       {/* iOS Apps Section - Now BEFORE projects */}
-      <div
-        className="panel"
-        style={{ paddingTop: "3rem", paddingBottom: "3rem" }}
-      >
+      <div className="panel">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.2 }}
           className="mx-auto w-full max-w-6xl"
         >
-          <h3 className="mb-4 text-center text-4xl font-bold text-zinc-100">
+          <h3 className="mb-2 text-center text-3xl font-bold text-zinc-100 md:text-4xl">
             iOS Apps
           </h3>
-          <p className="mx-auto mb-10 max-w-2xl text-center text-zinc-400">
+          <p className="mx-auto mb-6 max-w-2xl text-center text-sm text-zinc-400 md:text-base">
             Native iOS applications built with Swift and SwiftUI
           </p>
 
@@ -343,23 +356,119 @@ export default function Personal() {
 
       <SectionSeparator />
 
+      {/* Live in-browser demos — featured for memorability */}
+      <div className="panel">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          className="mx-auto w-full max-w-6xl"
+        >
+          <div className="mb-2 flex items-center justify-center gap-2">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+            </span>
+            <span className="text-xs font-semibold tracking-widest text-emerald-400 uppercase">
+              Live in-browser demos
+            </span>
+          </div>
+          <h3 className="mb-2 text-center text-3xl font-bold text-zinc-100 md:text-4xl">
+            Real models. Real math. In your browser.
+          </h3>
+          <p className="mx-auto mb-6 max-w-2xl text-center text-sm text-zinc-400 md:text-base">
+            Two of the projects below ship with interactive sandboxes that run
+            entirely client-side — no server, no API call.
+          </p>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            <Link
+              href="/projects/power-system-nn"
+              className="group flex flex-col overflow-hidden rounded-2xl border-2 border-emerald-900/40 bg-gradient-to-br from-emerald-950/30 via-zinc-900 to-emerald-950/20 p-6 transition-all hover:border-emerald-700/70 hover:shadow-2xl hover:shadow-emerald-500/10"
+            >
+              <div className="mb-3 flex items-center gap-2 text-xs font-semibold tracking-wider text-emerald-400 uppercase">
+                <svg
+                  className="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  />
+                </svg>
+                Power-grid overload predictor
+              </div>
+              <h4 className="text-xl font-bold text-zinc-100 md:text-2xl">
+                Trained PyTorch NN, running as JS matmul
+              </h4>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-zinc-300">
+                Slide the load and generation parameters of a 39-bus IEEE power
+                system, watch the model predict overloads across all 46 branches
+                in real time. Weights extracted from the trained{" "}
+                <code className="font-mono text-xs">model.pth</code> and run as
+                pure JavaScript — no model server, no library download.
+              </p>
+              <div className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-emerald-400 group-hover:text-emerald-300">
+                Try the demo →
+              </div>
+            </Link>
+
+            <Link
+              href="/projects/cryptography"
+              className="group flex flex-col overflow-hidden rounded-2xl border-2 border-violet-900/40 bg-gradient-to-br from-violet-950/30 via-zinc-900 to-violet-950/20 p-6 transition-all hover:border-violet-700/70 hover:shadow-2xl hover:shadow-violet-500/10"
+            >
+              <div className="mb-3 flex items-center gap-2 text-xs font-semibold tracking-wider text-violet-400 uppercase">
+                <svg
+                  className="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 15v2m0 0a2 2 0 11-4 0 2 2 0 014 0zm6-6V7a6 6 0 10-12 0v2M5 9h14a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2v-8a2 2 0 012-2z"
+                  />
+                </svg>
+                RSA encryption sandbox
+              </div>
+              <h4 className="text-xl font-bold text-zinc-100 md:text-2xl">
+                Encrypt + decrypt with BigInt RSA
+              </h4>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-zinc-300">
+                Type any message, watch it round-trip through textbook RSA in
+                three columns: plaintext bytes, ciphertext numbers, and the
+                decrypted result. All native JavaScript BigInt math — zero
+                external libraries.
+              </p>
+              <div className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-violet-400 group-hover:text-violet-300">
+                Try the demo →
+              </div>
+            </Link>
+          </div>
+        </motion.div>
+      </div>
+
+      <SectionSeparator />
+
       {/* Personal/School Project Spotlight - Single scrollable carousel */}
-      <div
-        className="panel"
-        style={{ paddingTop: "2rem", paddingBottom: "2rem" }}
-      >
+      <div className="panel">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.1 }}
           className="mx-auto w-full max-w-7xl"
         >
-          <h3 className="mb-4 text-center text-4xl font-bold text-zinc-100">
-            Personal/School Project Spotlight
+          <h3 className="mb-2 text-center text-3xl font-bold text-zinc-100 md:text-4xl">
+            Project Spotlight
           </h3>
-          <p className="mx-auto mb-8 max-w-2xl text-center text-zinc-400">
-            A collection of projects from my graduate studies at Georgia Tech
-            and personal research work
+          <p className="mx-auto mb-5 max-w-2xl text-center text-sm text-zinc-400 md:text-base">
+            Graduate studies at Georgia Tech and personal research work
           </p>
 
           {/* Scrollable Project Carousel */}
@@ -489,10 +598,10 @@ export default function Personal() {
           viewport={{ once: true, amount: 0.2 }}
           className="w-full"
         >
-          <h3 className="mb-8 text-center text-4xl font-bold text-zinc-100">
+          <h3 className="mb-2 text-center text-3xl font-bold text-zinc-100 md:text-4xl">
             Experience & Education
           </h3>
-          <p className="mx-auto mb-12 max-w-2xl text-center text-zinc-400">
+          <p className="mx-auto mb-6 max-w-2xl text-center text-sm text-zinc-400 md:text-base">
             4+ years of professional experience building production data
             pipelines, cloud applications, and AI/ML systems serving 100+ users
             across multiple laboratories. Backed by an M.S. in Computer Science
@@ -507,33 +616,44 @@ export default function Personal() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: false, amount: 0.2 }}
-          className="text-center"
+          className="flex flex-col items-center text-center"
         >
-          <h3 className="mb-8 text-4xl font-bold text-zinc-100">Connect</h3>
-          <p className="mb-5 max-w-md text-zinc-400">
-            Feel free to contact me at{" "}
-            <a
-              className="underline"
-              style={{ color: "rgb(var(--link-color))" }}
-              href={`mailto:${EMAIL}`}
+          <h3 className="mb-2 text-center text-3xl font-bold text-zinc-100 md:text-4xl">
+            Get in touch
+          </h3>
+          <p className="mx-auto mb-5 max-w-md text-center text-sm text-zinc-400 md:text-base">
+            Recruiter, hiring manager, or just curious — drop a short note and
+            I&apos;ll reply within a day or two. For something more structured,
+            the{" "}
+            <Link
+              href="/opportunities"
+              className="text-emerald-400 hover:underline"
             >
-              {EMAIL}
-            </a>
+              Opportunities page
+            </Link>{" "}
+            has roles, FAQ, and a calendar link.
           </p>
-          <div className="mt-8 flex items-center justify-center space-x-4">
+          <ContactForm />
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
             {SOCIAL_LINKS.map((link) => (
               <a
                 key={link.label}
                 href={link.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full bg-zinc-800 px-4 py-2 text-lg text-zinc-300 hover:bg-zinc-700"
+                className="rounded-full bg-zinc-800 px-3 py-1.5 text-xs text-zinc-300 transition-colors hover:bg-zinc-700"
               >
                 {link.label}
               </a>
             ))}
+            <a
+              href={`mailto:${EMAIL}`}
+              className="rounded-full bg-zinc-800 px-3 py-1.5 text-xs text-zinc-300 transition-colors hover:bg-zinc-700"
+            >
+              {EMAIL}
+            </a>
           </div>
-          <div className="mt-24">
+          <div className="mt-12 w-full">
             <Footer />
           </div>
         </motion.div>

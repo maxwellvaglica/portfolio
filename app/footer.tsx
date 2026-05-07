@@ -1,16 +1,19 @@
 "use client";
 
+import { CAL_COM_URL } from "@/lib/constants";
+
 export function Footer() {
   return (
     <div className="mt-8 border-t border-zinc-800 pt-8">
-      <div className="flex flex-col items-center gap-4">
+      <div className="flex flex-col items-center gap-3">
         <a
-          href="/maxwell_vaglica_resume_may.pdf"
-          download
-          className="inline-flex items-center gap-2 rounded-lg bg-zinc-800 px-6 py-3 font-medium text-zinc-100 transition-all hover:bg-zinc-700 hover:shadow-lg"
+          href={CAL_COM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 rounded-lg bg-emerald-700 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-emerald-600"
         >
           <svg
-            className="h-5 w-5"
+            className="h-4 w-4"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -19,12 +22,12 @@ export function Footer() {
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth={2}
-              d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
             />
           </svg>
-          Download Resume
+          Book a 15-min call
         </a>
-        <p className="text-sm text-zinc-500">
+        <p className="text-xs text-zinc-500">
           © {new Date().getFullYear()} Maxwell Vaglica. All rights reserved.
         </p>
       </div>

@@ -1,0 +1,56 @@
+[
+  {
+    "slug": "anthropic",
+    "companyName": "Anthropic",
+    "roleTitle": "Member of Technical Staff (ML/Backend)",
+    "intro": "Anthropic is one of a handful of organizations actually shipping the kinds of agentic systems my hero claims to build. I'd be most useful on the parts of the stack where production reliability meets ML — data pipelines, eval infrastructure, retrieval, deployment.",
+    "featuredProjectIds": [
+      "power-system-nn",
+      "ml-cybersecurity",
+      "qlearner",
+      "leetcode"
+    ],
+    "whyImAFit": [
+      "Four years shipping production data + ML systems at Tempus serving 100+ users in regulated, high-stakes laboratory environments.",
+      "Hands-on PyTorch — including the in-browser ONNX demo on the Power System NN page on this site, running entirely client-side via WebAssembly.",
+      "M.S. in CS from Georgia Tech with the Computing Systems specialization; I think about distributed systems and reliability before I think about modeling tricks."
+    ],
+    "ctaText": "Book a 15-minute intro call"
+  },
+  {
+    "slug": "stripe",
+    "companyName": "Stripe",
+    "roleTitle": "Software Engineer / Data Engineer",
+    "intro": "Stripe runs on data correctness more than almost any company in the world. My background — production pipelines feeding clinical reports where mistakes have direct patient consequences — is unusually well-suited to that bar.",
+    "featuredProjectIds": [
+      "leetcode",
+      "ml-cybersecurity",
+      "api-security",
+      "bgp-hijacking"
+    ],
+    "whyImAFit": [
+      "FastAPI + GCP + BigQuery experience building APIs and pipelines that have run in production for years with strict uptime requirements.",
+      "OWASP API Top 10 hands-on work and a full BGP hijacking simulation — I think about adversarial inputs by default.",
+      "Strong systems fundamentals: I picked the Computing Systems track at Georgia Tech specifically to deepen the distributed systems and security side of my profile."
+    ],
+    "ctaText": "Book a 15-minute intro call"
+  },
+  {
+    "slug": "databricks",
+    "companyName": "Databricks",
+    "roleTitle": "Solutions Architect / Data Engineer",
+    "intro": "Databricks customers buy the platform; what they need is someone to make it work in their existing stack. I've spent four years being that person inside a regulated lab — translating between business owners, scientists, and infrastructure teams.",
+    "featuredProjectIds": [
+      "seaheroquest",
+      "deeplabcut",
+      "ml-cybersecurity",
+      "strategy-evaluation"
+    ],
+    "whyImAFit": [
+      "Built the nucleic-acid sequencing pipeline used by 100+ scientists across multiple US laboratories — design, deployment, on-call ownership.",
+      "Cross-functional comfort: I work directly with non-technical stakeholders (clinical staff, lab ops, leadership) and translate their needs into data architecture.",
+      "Sea Hero Quest analysis processed 4M+ player records with Dask — I'm comfortable at the data scale Databricks customers operate in."
+    ],
+    "ctaText": "Book a 15-minute intro call"
+  }
+]

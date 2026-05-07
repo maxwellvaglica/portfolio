@@ -19,6 +19,7 @@ type Project = {
   github?: string;
   iterationImages?: { src: string; label: string; iterations: string }[];
   problems?: LeetCodeProblem[];
+  architecture?: { title: string; chart: string };
   details?: {
     overview: string;
     technologies: string[];
@@ -59,6 +60,15 @@ export const PROJECTS: Project[] = [
       "https://images.unsplash.com/photo-1719650592946-55163c4994cb?w=800&h=600&fit=crop&q=80",
     id: "deeplabcut",
     category: "Deep Learning",
+    architecture: {
+      title: "Pipeline overview",
+      chart: `flowchart LR
+    Video["Raw video frames"] --> Label["Manual keypoint labeling"]
+    Label --> Train["ResNet-50 training (350K iter)"]
+    Train --> Track["5-point tracking (nose, ears, back, tail)"]
+    Track --> Detect["Rearing detector (spatial rules + threshold calibration)"]
+    Detect --> CSV["Per-frame behavior CSV"]`,
+    },
     iterationImages: [
       {
         src: "/rat_25000it.png",
@@ -105,7 +115,7 @@ export const PROJECTS: Project[] = [
       challenges:
         "Training deep neural networks for accurate pose estimation required extensive GPU compute time and careful hyperparameter tuning. Developing a robust rearing detection algorithm that works across different lighting conditions and camera angles was particularly challenging.",
       results:
-        "Successfully trained a high-accuracy pose estimation model that dramatically improves from 25K to 350K iterations. The system can automatically detect rearing behavior in hours of video footage, replacing manual annotation that would take days.",
+        "Trained a ResNet-50 pose estimation model across 350,000 iterations to track 5 body parts (nosetip, two ears, top back, tail base) with high spatial accuracy. The trained pipeline automatically labels hours of video and exports per-frame rearing classifications to CSV, replacing manual annotation work that previously took days per session.",
     },
   },
   {
@@ -289,7 +299,7 @@ public:
       challenges:
         "Balancing time and space complexity trade-offs, handling edge cases in input validation, and writing clean, maintainable code under time pressure. The Trips and Users problem required complex multi-table joins and aggregation logic.",
       results:
-        "Successfully solved problems across all difficulty levels, demonstrating strong algorithmic foundations essential for technical interviews and real-world software engineering.",
+        "Solved problems across Easy / Medium / Hard difficulties in three languages (Python, C++, Pandas), including SQL-style multi-table joins, regex validation, and O(n) array problems — comfortable across the full technical-interview surface.",
     },
   },
   {
@@ -359,7 +369,7 @@ public:
       challenges:
         "Handling arbitrary-precision arithmetic for 2048+ bit RSA operations, implementing mathematically complex attacks on cryptographic systems, and managing precision issues with Python's Decimal module for extremely large numbers.",
       results:
-        "Successfully implemented multiple cryptographic algorithms and attacks, demonstrating mastery of both classical and modern cryptography principles. Achieved 100% score on the project.",
+        "Achieved 100% on the project. A textbook-RSA version is live on this page as an in-browser sandbox: type any message and watch it round-trip through encryption and decryption as native JavaScript BigInt math, fully client-side.",
     },
   },
   {
@@ -371,6 +381,17 @@ public:
       "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&h=600&fit=crop&q=80",
     id: "bgp-hijacking",
     category: "Networking",
+    architecture: {
+      title: "Network topology",
+      chart: `flowchart LR
+    R1(("R1 victim AS")) --- R2(("R2"))
+    R2 --- R3(("R3"))
+    R3 --- R4(("R4"))
+    R4 --- R5(("R5"))
+    R5 --- R1
+    R6(("R6 rogue AS")) -.->|"hijacked prefix"| R3
+    Web["Web monitor"] -.-> R3`,
+    },
     details: {
       overview:
         "A comprehensive network security project that simulates BGP hijacking attacks in a controlled Mininet environment. The project implements a multi-router network topology with full BGP routing, demonstrates how rogue autonomous systems can hijack internet routes, and provides real-time visualization of attack propagation.",
@@ -428,7 +449,7 @@ public:
       challenges:
         "Designing effective feature engineering pipelines for financial data, implementing ensemble learning methods without external ML libraries, handling look-ahead bias in backtesting, and optimizing strategy parameters for out-of-sample performance.",
       results:
-        "Developed trading strategies that significantly outperform buy-and-hold benchmarks, demonstrating proficiency in machine learning for quantitative finance.",
+        "Bagged-Random-Tree learner (BagLearner over RTLearner) trained on 4 technical indicators (SMA, Bollinger Bands, RSI, MACD) materially outperformed a buy-and-hold benchmark in walk-forward backtests with realistic transaction costs and slippage.",
     },
   },
   {
@@ -678,6 +699,18 @@ public:
       "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&h=600&fit=crop&q=80",
     id: "power-system-nn",
     category: "Machine Learning",
+    architecture: {
+      title: "Model architecture",
+      chart: `flowchart LR
+    In["37 features (Pd_bus*, Qd_bus*, Pg_gen*, Qg_gen*)"] --> Scaler["StandardScaler"]
+    Scaler --> L1["Linear 37 to 120"]
+    L1 --> R1["ReLU"]
+    R1 --> L2["Linear 120 to 80"]
+    L2 --> R2["ReLU"]
+    R2 --> L3["Linear 80 to 46"]
+    L3 --> Sig["Sigmoid"]
+    Sig --> Out["46 branch overload probabilities"]`,
+    },
     details: {
       overview:
         "A deep learning project using neural networks to predict branch overloads in electric power systems. The project implements a multi-layer neural network in PyTorch to analyze power flow data and predict potential grid failures, critical for maintaining power grid stability and preventing cascading blackouts.",
@@ -700,7 +733,42 @@ public:
       challenges:
         "Designing network architecture for power system data characteristics, handling class imbalance in overload events, selecting optimal hyperparameters, and ensuring model generalizes across different grid configurations.",
       results:
-        "Successfully developed a neural network model for power system monitoring, demonstrating application of deep learning to critical infrastructure problems.",
+        "Trained PowerSystemNN (Linear→ReLU→Linear→ReLU→Linear→Sigmoid, 37 selected bus/generator features → 46 per-branch overload probabilities) and deployed it as a live in-browser demo on this project page — visitors adjust load and generation sliders and watch the model predict overloads across all 46 grid branches in real time, running entirely client-side with no server.",
+    },
+  },
+  {
+    name: "JobCompare 6300: Android Team Project",
+    description:
+      "Four-person Android app (Java, Gradle, API 34) built for Georgia Tech CS 6300 Software Development Process — full SDLC artifacts including design docs, UML class diagrams, use case models, and a written test plan.",
+    link: "#",
+    image:
+      "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop&q=80",
+    id: "jobcompare-6300",
+    category: "Software Engineering",
+    github: "https://github.com/maxwellvaglica/6300Spring25Team092",
+    details: {
+      overview:
+        "A team-built Android application that lets users save current job offers, weight comparison criteria (compensation, location, work-life balance, growth, etc.), and rank offers against a current role. Built over a semester in CS 6300 with three classmates, the project followed a complete software development lifecycle: requirements, use case modeling, architecture (component + class diagrams), iterative implementation, code review, and a written test plan.",
+      technologies: [
+        "Java",
+        "Android (API 34)",
+        "Gradle",
+        "JUnit",
+        "UML / Component Diagrams",
+        "Software Engineering Process",
+      ],
+      features: [
+        "5-component architecture (UI, Main Menu, Job, Job Comparison, Data Management)",
+        "Job-offer model with configurable weighted comparison criteria",
+        "Side-by-side ranked comparisons across multiple offers",
+        "Persistent local storage with input validation and acceptable-range guidance",
+        "Documented design (component/class/use-case diagrams) and test plan",
+        "Team workflow with weekly reports and code review",
+      ],
+      challenges:
+        "Coordinating four developers across time zones, keeping the Android build green as features merged in parallel, and translating informal requirements into a consistent class diagram and test plan everyone could implement against.",
+      results:
+        "Shipped a working APK and complete SDLC documentation set as a four-person team for CS 6300, the production-grade software engineering course in Georgia Tech's M.S. CS curriculum.",
     },
   },
   {
@@ -770,4 +838,4 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
 ];
 
-export const EMAIL = "maxvaglica@gmail.com";
+export const EMAIL = "maxvaglica@hotmail.com";

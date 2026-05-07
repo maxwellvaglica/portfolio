@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 
 export const SectionSeparator = () => {
   return (
-    <div className="my-12 flex justify-center">
+    <div className="my-4 flex justify-center md:my-6">
       <motion.div
         initial={{ width: 0 }}
         whileInView={{ width: "50%" }}

@@ -5,6 +5,9 @@ import { use, useState } from "react";
 import { PROJECTS } from "@/app/data";
 import { Footer } from "@/app/footer";
 import { Github, ChevronDown, ChevronUp } from "lucide-react";
+import { Mermaid } from "@/components/ui/mermaid";
+import { OnnxPowerDemo } from "@/components/ui/onnx-power-demo";
+import { RsaDemo } from "@/components/ui/rsa-demo";
 
 const GITHUB_REPOS_URL = "https://github.com/maxwellvaglica?tab=repositories";
 
@@ -350,6 +353,63 @@ export default function ProjectPage({
                     </button>
                   ))}
                 </div>
+              </motion.div>
+            )}
+
+            {project.id === "power-system-nn" && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.25 }}
+                className="rounded-xl border border-emerald-900/50 bg-emerald-950/10 p-6"
+              >
+                <h2 className="mb-1 text-2xl font-bold text-zinc-100">
+                  Live in-browser demo
+                </h2>
+                <p className="mb-5 text-sm text-zinc-400">
+                  This is the trained PowerSystemNN running entirely in your
+                  browser as plain JavaScript matmul — no server, no API call.
+                  Adjust the load and generation sliders and watch the overload
+                  probability update in real time.
+                </p>
+                <OnnxPowerDemo />
+              </motion.div>
+            )}
+
+            {project.id === "cryptography" && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.25 }}
+                className="rounded-xl border border-emerald-900/50 bg-emerald-950/10 p-6"
+              >
+                <h2 className="mb-1 text-2xl font-bold text-zinc-100">
+                  Live RSA sandbox
+                </h2>
+                <p className="mb-5 text-sm text-zinc-400">
+                  Type any message and watch it round-trip through textbook RSA:
+                  byte-by-byte encryption with a public key, decryption with the
+                  private key, all computed as native JavaScript BigInt math
+                  right in your browser.
+                </p>
+                <RsaDemo />
+              </motion.div>
+            )}
+
+            {project.architecture && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.28 }}
+                className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6"
+              >
+                <h2 className="mb-1 text-2xl font-bold text-zinc-100">
+                  {project.architecture.title}
+                </h2>
+                <p className="mb-4 text-sm text-zinc-500">
+                  Architecture diagram
+                </p>
+                <Mermaid chart={project.architecture.chart} />
               </motion.div>
             )}
 
