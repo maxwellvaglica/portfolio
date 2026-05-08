@@ -27,20 +27,20 @@ const TARGET_ROLES = [
 
 const STRENGTHS = [
   {
-    title: "Production data pipelines",
-    body: "Four years building and operating pipelines used daily by 100+ scientists across multiple US labs at Tempus. GCP, BigQuery, Python, FastAPI, CI/CD.",
+    title: "Agentic AI in production",
+    body: "Designed and deployed a web-based agentic-AI platform at Tempus AI on LangChain + OpenAI APIs — users query datasets in natural language, generate insights, and execute Python dynamically. Tool-augmented LLM workflows that translate prompts into multi-step data pipelines (code generation, execution, visualization).",
+  },
+  {
+    title: "Full-stack + cloud at scale",
+    body: "Full-stack apps (React + FastAPI) deployed on Google Kubernetes Engine for concurrent users and real-time agent interactions. Production data pipelines on GCP / BigQuery used daily by 100+ scientists across multiple US labs.",
   },
   {
     title: "Applied ML and deep learning",
-    body: "PyTorch in production for branch-overload prediction; ensemble learning for trading; classical ML pipelines for security threat detection. Comfortable end-to-end: data → model → deployment.",
-  },
-  {
-    title: "Agentic AI & RAG",
-    body: "Building retrieval-augmented systems with LangChain and modern LLM tooling; this site itself ships a 1B-parameter Llama running entirely in the visitor's browser via WebGPU.",
+    body: "PyTorch in production for branch-overload prediction (live demo on this site); ensemble learning for trading strategies; classical ML pipelines for security threat detection. Comfortable end-to-end: data → model → deployment.",
   },
   {
     title: "Owning projects end-to-end",
-    body: "From requirements gathering with non-technical stakeholders, to architecture design, to deployment, to on-call. M.S. CS from Georgia Tech (Computing Systems specialization).",
+    body: "From requirements gathering with non-technical stakeholders, to architecture design, to deployment, to on-call. Two iOS apps shipped solo to the App Store this year. M.S. CS from Georgia Tech (Computing Systems specialization).",
   },
 ];
 
@@ -63,7 +63,7 @@ const FAQ = [
   },
   {
     q: "Preferred stack?",
-    a: "Python is home. PyTorch, FastAPI, GCP/BigQuery, SQL, Docker/Kubernetes are everyday tools. I learn new stacks fast — I shipped two SwiftUI iOS apps to the App Store this year as proof.",
+    a: "Python is home. LangChain + OpenAI APIs, PyTorch, FastAPI, React, GCP / BigQuery / GKE, SQL, Docker, CI/CD are everyday tools. I learn new stacks fast — I shipped two SwiftUI iOS apps to the App Store this year as proof.",
   },
   {
     q: "What kinds of teams do you do your best work with?",
@@ -87,10 +87,10 @@ export default function HireMePage() {
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-zinc-300">
             I just earned my M.S. in Computer Science from Georgia Tech
-            (Computing Systems) while shipping production data and ML systems
-            full-time at Tempus Labs. I&apos;m looking for the next role where I
-            can keep doing both — building systems that real people depend on,
-            with a team that takes engineering quality seriously.
+            (Computing Systems) while shipping production agentic-AI systems and
+            data pipelines full-time at Tempus AI. I&apos;m looking for the next
+            role where I can keep doing both — building systems that real people
+            depend on, with a team that takes engineering quality seriously.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">

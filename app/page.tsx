@@ -11,14 +11,15 @@ import { ContactForm } from "@/components/contact-form";
 
 const SKILLS = [
   "Python",
-  "SQL & BigQuery",
-  "Cloud Computing (GCP, Azure)",
+  "Agentic & Generative AI",
+  "LangChain & RAG",
+  "PyTorch & Machine Learning",
   "FastAPI & REST APIs",
-  "Machine Learning & PyTorch",
-  "LLMs & Agentic AI",
-  "RAG & LangChain",
-  "Data Pipelines",
+  "GCP / Azure / GKE",
+  "React & Full-Stack",
+  "SQL & BigQuery",
   "CI/CD & DevOps",
+  "Data Visualization / BI",
 ];
 
 const HIGHLIGHTS = [
@@ -60,39 +61,40 @@ const TIMELINE_ITEMS = [
       { name: "Power System Neural Network", id: "power-system-nn" },
     ],
   },
-  // Computational Biologist at Tempus Labs
+  // Computational Biologist at Tempus AI
   {
     title: "Computational Biologist",
-    subtitle: "Tempus Labs",
+    subtitle: "Tempus AI",
     start: "2021",
     end: "Present",
     type: "work" as const,
     description:
-      "Building production data pipelines, cloud applications, and automation systems for precision medicine. Developed systems serving 100+ users across multiple laboratories nationwide, integrating laboratory devices with databases and deploying cloud-based applications on GCP.",
+      "Building full-stack agentic-AI systems, production data pipelines, and cloud applications for precision medicine. Systems serve 100+ scientists nationwide and run on GKE for real-time agent interactions, with FastAPI services and React front-ends connecting AI agents to internal data systems.",
     highlights: [
-      "Developed nucleic acid sequencing pipeline used by 100+ users for 2+ years",
-      "Built and maintained large-scale databases handling 30+ concurrent users",
-      "Established RESTful APIs using FastAPI for third-party integrations",
-      "Deployed cloud-based web applications for laboratory automation on GCP",
-      "Integrated laboratory devices with internal databases reducing manual entry",
-      "Set up automated label printing systems across Chicago laboratories",
+      "Designed and deployed a web-based agentic AI system letting users query datasets, generate insights, and execute Python dynamically using LangChain + OpenAI APIs",
+      "Built tool-augmented LLM workflows that translate natural language into multi-step data analysis pipelines (code generation, execution, visualization)",
+      "Deployed scalable AI applications on Google Kubernetes Engine, supporting concurrent users and real-time agent interactions",
+      "Integrated AI agents with REST APIs and external data systems via FastAPI, enabling autonomous task execution across internal services and databases",
+      "Built full-stack applications (React + Python) supporting AI-driven analytics, laboratory automation, and BI workflows",
+      "Production data pipelines used daily by 100+ scientists across multiple US labs for 2+ years",
     ],
     skills: [
       "Python",
+      "LangChain",
+      "OpenAI APIs",
+      "Agentic AI",
+      "RAG",
       "FastAPI",
+      "React",
       "GCP",
+      "GKE / Kubernetes",
       "BigQuery",
-      "SQL",
-      "Data Pipelines",
       "CI/CD",
-      "Kubernetes",
-      "Docker",
-      "REST APIs",
     ],
   },
-  // Research Programmer at IU
+  // Research Software Engineer at IU
   {
-    title: "Research Programmer",
+    title: "Research Software Engineer",
     subtitle: "Indiana University - Newman Memory Lab",
     start: "2019",
     end: "2021",
@@ -220,10 +222,10 @@ export default function Personal() {
             Maxwell Vaglica
           </h1>
           <p className="mx-auto mt-3 max-w-2xl text-base leading-relaxed text-zinc-400 md:text-lg">
-            <span className="text-zinc-200">Data & AI/ML Engineer</span> with
-            expertise in building scalable data pipelines, cloud-based
-            applications, and production machine learning and agentic AI
-            systems. M.S. in Computer Science from Georgia Tech, Computing
+            <span className="text-zinc-200">Data & AI/ML Engineer</span> at
+            Tempus AI, building production agentic-AI systems, full-stack apps
+            (React + FastAPI on GKE), and data pipelines used daily by 100+
+            scientists. M.S. in Computer Science from Georgia Tech, Computing
             Systems specialization.
           </p>
           <div className="mx-auto mt-5 flex max-w-lg justify-center gap-6 md:gap-8">

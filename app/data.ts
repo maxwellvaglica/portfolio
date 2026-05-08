@@ -347,6 +347,7 @@ public:
       "https://plus.unsplash.com/premium_photo-1661963874418-df1110ee39c1?w=800&h=600&fit=crop&q=80",
     id: "cryptography",
     category: "Security",
+    github: "https://github.com/maxwellvaglica/rsa-cryptography-attacks",
     details: {
       overview:
         "A comprehensive cryptography project implementing RSA and Vigenere cipher algorithms with various cryptographic attacks. The project demonstrates deep understanding of public-key cryptography, including key generation, encryption/decryption, and multiple attack vectors using advanced mathematical techniques like the Chinese Remainder Theorem and modular arithmetic.",
@@ -699,6 +700,7 @@ public:
       "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&h=600&fit=crop&q=80",
     id: "power-system-nn",
     category: "Machine Learning",
+    github: "https://github.com/maxwellvaglica/power-system-overload-pytorch",
     architecture: {
       title: "Model architecture",
       chart: `flowchart LR
@@ -808,7 +810,7 @@ public:
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
-    company: "Tempus Labs",
+    company: "Tempus AI",
     title: "Computational Biologist",
     start: "2021",
     end: "Present",
@@ -817,7 +819,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
   },
   {
     company: "Indiana University",
-    title: "Research Programmer",
+    title: "Research Software Engineer",
     start: "2019",
     end: "2021",
     link: "https://www.indiana.edu/",

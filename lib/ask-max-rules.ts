@@ -138,7 +138,7 @@ const RULES: Rule[] = [
       ["computational", "biolog"],
     ],
     reply: () => ({
-      text: "Computational Biologist at Tempus Labs (Chicago) since 2021. He builds production data pipelines, FastAPI services, and GCP-deployed cloud apps used daily by 100+ scientists across multiple US labs. Also integrates lab instruments with internal databases and runs the automated label-printing systems.",
+      text: "Computational Biologist at Tempus AI (Chicago) since October 2021. Builds production agentic-AI systems on LangChain + OpenAI, full-stack apps (React + FastAPI) deployed on Google Kubernetes Engine, and data pipelines used daily by 100+ scientists across multiple US labs.",
     }),
   },
   {
@@ -154,7 +154,7 @@ const RULES: Rule[] = [
       ["responsibilit"],
     ],
     reply: () => ({
-      text: "Day-to-day: production data pipelines and cloud apps on GCP at Tempus Labs (FastAPI + Python + BigQuery + CI/CD), plus applied ML — including the trained PyTorch model running live on the power-system page of this site.",
+      text: "Day-to-day at Tempus AI: building agentic-AI systems on LangChain + OpenAI (tool-augmented LLM workflows that turn natural language into multi-step Python pipelines), full-stack apps (React + FastAPI) on Google Kubernetes Engine, and data pipelines on GCP / BigQuery. Plus applied ML — see the live PyTorch demo on /projects/power-system-nn.",
     }),
   },
   {
@@ -172,7 +172,7 @@ const RULES: Rule[] = [
       ["academia"],
     ],
     reply: () => ({
-      text: "Before Tempus he was a Research Programmer at Indiana University's Newman Memory Lab (2019–2021). Built DeepLabCut-based ML pipelines for automated rat-behavior tracking and analyzed 4M+ Sea Hero Quest gameplay sessions for spatial-navigation / dementia research.",
+      text: "Before Tempus he was a Research Software Engineer at Indiana University's Newman Memory Lab (2019–2021). Built DeepLabCut-based ML pipelines for automated rat-behavior tracking and analyzed 4M+ Sea Hero Quest gameplay sessions for spatial-navigation / dementia research.",
     }),
   },
   {
@@ -187,7 +187,7 @@ const RULES: Rule[] = [
       ["experienced"],
     ],
     reply: () => ({
-      text: "4+ years of professional engineering experience: ~5 years at Tempus Labs (2021–present) plus 2 years as a Research Programmer at Indiana University before that. He's been writing code for production systems, not just notebooks, the whole time.",
+      text: "4+ years of professional engineering experience: ~4.5 years at Tempus AI (Oct 2021–present) plus 2 years as a Research Software Engineer at Indiana University before that. He's been writing code for production systems, not notebooks, the whole time.",
     }),
   },
 
@@ -388,7 +388,7 @@ const RULES: Rule[] = [
     id: "fastapi",
     keywords: [["fastapi"], ["fast api"]],
     reply: () => ({
-      text: "Yes — he's used FastAPI in production at Tempus to build internal REST APIs that integrate lab instruments with databases and surface data to scientists. Comfortable with auth, async handlers, OpenAPI schemas, and CI deployment.",
+      text: "FastAPI is his daily web framework at Tempus AI — REST APIs that connect AI agents to internal data systems, lab instruments to databases, and full-stack React front-ends to backend services on GKE. Comfortable with auth, async handlers, OpenAPI schemas, and CI deployment.",
     }),
   },
   {
@@ -439,7 +439,7 @@ const RULES: Rule[] = [
       ["containeriz"],
     ],
     reply: () => ({
-      text: "Docker daily; Kubernetes for some deployments. CI/CD via GitHub Actions and Cloud Build at Tempus.",
+      text: "Docker daily; Google Kubernetes Engine (GKE) for production deployments at Tempus AI — running scalable AI applications that support concurrent users and real-time agent interactions. CI/CD via GitHub Actions and Cloud Build.",
     }),
   },
   {
@@ -683,7 +683,7 @@ const RULES: Rule[] = [
       ["what", "good"],
     ],
     reply: () => ({
-      text: "Three things: (1) production data pipelines at Tempus serving 100+ scientists for 2+ years; (2) applied ML / agentic AI shipped in real systems, not just notebooks; (3) owns projects end-to-end — requirements gathering with non-technical stakeholders, architecture, deploy, on-call.",
+      text: "Three things: (1) shipped a web-based agentic-AI platform at Tempus AI that translates natural language into multi-step Python pipelines (LangChain + OpenAI, on GKE); (2) production data pipelines used daily by 100+ scientists for years; (3) owns projects end-to-end — full-stack React + FastAPI, deploy, on-call, plus stakeholder communication.",
     }),
   },
   {

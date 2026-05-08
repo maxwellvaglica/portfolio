@@ -36,20 +36,25 @@ CONTEXT:
 - B.S. Cognitive Science, Indiana University Bloomington (2017–2021). Interdisciplinary mix of psychology, neuroscience, philosophy, and CS.
 
 # Current employment
-- Computational Biologist at Tempus Labs (Chicago) since 2021.
-- Builds production data pipelines, FastAPI APIs, and GCP-deployed cloud apps used daily by 100+ scientists across multiple US labs.
+- Computational Biologist at Tempus AI (Chicago) since October 2021.
+- Builds production agentic-AI systems on LangChain + OpenAI APIs — including a web-based platform that lets users query datasets in natural language, generate insights, and execute Python dynamically.
+- Builds tool-augmented LLM workflows that translate natural language into multi-step data analysis pipelines (code generation, execution, visualization).
+- Builds full-stack apps (React + FastAPI) deployed on Google Kubernetes Engine for concurrent users + real-time agent interactions.
+- Production data pipelines on GCP / BigQuery used daily by 100+ scientists across multiple US labs.
 - Integrates lab instruments with internal databases; runs automated label-printing systems.
 
 # Previous employment
-- Research Programmer, Newman Memory Lab, Indiana University (2019–2021).
+- Research Software Engineer, Newman Memory Lab, Indiana University (2019–2021).
 - Built DeepLabCut ML pipelines for behavioral neuroscience; analyzed 4M+ Sea Hero Quest gameplay sessions for spatial-navigation / dementia research.
 
 # Total professional experience: 4+ years.
 
 # Stack
 - Python is home. PyTorch, FastAPI, Pandas, scikit-learn.
-- Cloud: GCP / BigQuery (production for 4+ years), Docker, Kubernetes, CI/CD via GitHub Actions and Cloud Build.
-- Other: SQL daily, Swift / SwiftUI (two App Store iOS apps), Java / Android (Georgia Tech team project), LangChain.
+- AI / agentic systems: LangChain, OpenAI APIs, RAG, tool-augmented LLMs, prompt engineering.
+- Cloud: GCP / BigQuery / Google Kubernetes Engine (production for 4+ years), Docker, CI/CD via GitHub Actions and Cloud Build.
+- Front-end: React, full-stack work integrated with FastAPI services.
+- Other: SQL daily, Swift / SwiftUI (two App Store iOS apps), Java / Android (Georgia Tech team project), .NET, C++ / C# from earlier coursework.
 
 # iOS apps shipped to the App Store this year
 - TabGuard (Safari popup / tab blocker)
@@ -59,10 +64,12 @@ CONTEXT:
 - ML / AI Engineer, Data Engineer, Backend / Full-Stack Engineer, Solutions Architect, Applied Scientist / Research Engineer.
 
 # Strengths (use these in pitches)
+- Shipped a production agentic-AI platform at Tempus AI (LangChain + OpenAI on GKE) that real scientists use daily.
+- Tool-augmented LLM workflows that translate natural language into multi-step Python data pipelines.
 - Production data pipelines used by 100+ users for years (Tempus).
 - Applied ML in production, not just notebooks (PyTorch, this site's live demo).
-- Owns projects end-to-end: requirements with non-technical stakeholders → architecture → deploy → on-call.
-- Cross-functional comfort with scientists / lab ops / infra.
+- Full-stack: React front-ends + FastAPI back-ends, real-time integrations.
+- Owns projects end-to-end: requirements → architecture → deploy → on-call. Cross-functional comfort with scientists / lab ops / infra.
 
 # Honest weakness
 - Front-end design beyond "competent and clean" isn't his strength; he leans on UI libraries.
